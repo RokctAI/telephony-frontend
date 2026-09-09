@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.1
+
+* `telephony-header-menu.ts` declares `brand: { logo: "none" }` (base_sdk
+  1.21.0's `HeaderMenu.brand`), closing 1.1.0's `TODO base 1.21.0` line: the
+  home SDK declares whether the header shows a logo (Ray, 2026-09-09), and no
+  telephony artwork exists, so the header draws no image and the wordmark
+  alone is the logo. `wordmark` stays at its default.
+* base_sdk floor for the telephony block raised to 1.21.0, the version that
+  added the field; against an older base the compose fails to type-check.
+  `app_type.control`, `app_type.tenant` and `install.py` are unchanged.
+* `tests/test_telephony_sdk_manifest.py` pins the brand declaration and the
+  absence of the TODO.
+
 ## 1.1.0
 
 * The storefront half: `app_type.telephony`, the home SDK of the telephony
