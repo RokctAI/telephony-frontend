@@ -30,16 +30,19 @@
 // Log in and Sign up beside the row (components/custom/header.tsx, the auth
 // link and the auth pill), and a second pair would only repeat them.
 //
-// No logo image: the home SDK declares the header logo (Ray, 2026-09-09,
-// 14:15Z) and no telephony artwork exists in any source, so the header must
-// draw none. base_sdk 1.20.0's HeaderMenu carries no field for that yet.
-// TODO base 1.21.0: brand.logo "none" - when base_sdk 1.21.0's `brand`
-// declaration lands on the header-menu registry, add `brand: { logo: "none" }`
-// here and raise the manifest's base_sdk floor to 1.21.0.
+// `brand: { logo: "none" }` (base_sdk >= 1.21.0's HeaderMenu.brand): the
+// home SDK declares whether the header shows a logo (Ray, 2026-09-09,
+// 14:15Z), and no telephony artwork exists in any source, so the header
+// draws no image and the wordmark (the host's branding.tsx) is the logo.
+// `wordmark` is left at its default, true. Against a base_sdk older than
+// 1.21.0 the field is unknown to the registry's HeaderMenu type and the
+// compose fails to type-check, which is the floor the manifest names.
 
 import type { HeaderMenu } from "@/components/custom/landing/header-menu";
 
 const TELEPHONY_HEADER_MENU: HeaderMenu = {
+  // No telephony icon yet: the wordmark alone (Ray, 2026-09-09).
+  brand: { logo: "none" },
   anchors: ["features", "pricing"],
 };
 

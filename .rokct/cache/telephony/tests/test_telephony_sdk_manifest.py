@@ -13,7 +13,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 """Invariants over telephony_sdk's Next.js manifest and its storefront
-templates (telephony/nextjs, 1.1.0): the two app_type halves, the landing
+templates (telephony/nextjs, 1.1.1): the two app_type halves, the landing
 half's registrations against base_sdk's landing registries, the plans-query
 literal, and the no-invented-copy rule.
 
@@ -68,7 +68,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.1.0")
+        self.assertEqual(self.manifest["version"], "1.1.1")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
@@ -227,7 +227,7 @@ class TestLandingTemplates(unittest.TestCase):
         self.assertIn('redirect("/landing")', src)
         self.assertIn('export const dynamic = "force-dynamic";', src)
 
-    def test_header_menu_has_no_actions_and_no_logo(self):
+    def test_header_menu_has_no_actions_and_brand_logo_none(self):
         src = read(
             os.path.join(
                 LANDING_TEMPLATES,
@@ -241,7 +241,10 @@ class TestLandingTemplates(unittest.TestCase):
         self.assertNotIn("groups", menu.group(1))
         self.assertNotIn("links", menu.group(1))
         self.assertNotRegex(src, r"\.(png|svg|jpg|webp)")
-        self.assertIn('TODO base 1.21.0: brand.logo "none"', src)
+        # base_sdk 1.21.0's HeaderMenu.brand: the wordmark alone, no image.
+        self.assertIn('brand: { logo: "none" }', menu.group(1))
+        self.assertNotIn("wordmark:", menu.group(1))
+        self.assertNotIn("TODO", src)
 
     def test_site_metadata_flags_the_placeholder_name(self):
         src = read(

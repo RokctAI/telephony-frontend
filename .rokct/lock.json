@@ -55,10 +55,10 @@
       "git": "https://github.com/RokctAI/hardware",
       "path": "../hardware/telephony/nextjs",
       "ref": "main",
-      "commit": "ccb7219637af3a0264c16c35d6acf1fdade1c867",
-      "version": "1.1.0",
+      "commit": "5ba465835ccbd713e1703c504b6b33d80749c093",
+      "version": "1.1.1",
       "install_py_sha256": "5e4182ace62450b9feb6689aae032b8d4434e4ef368d071ab344ade58c1bf691",
-      "content_sha256": "9698196ed39886e6a0ca63705ae9a4a6548f2a2684f7c4b816b926ca3455db82"
+      "content_sha256": "3bbe346ecc0f0102b1e00274bc3af3a5f9bdf4e9731595153b349f6508b0064f"
     }
   ]
 }
