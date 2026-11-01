@@ -28,20 +28,22 @@
 //
 // No `icon`: the SDK ships no icon file, so base_sdk >= 1.17.0 draws the
 // fallback favicon (the domain's first letter) itself. No `still`, no `logo`,
-// no `ogImage`: there is no telephony artwork in the sources, and base's
-// generated card draws the tagline on its own. No `url`: the storefront's
-// host is not fixed in any source yet; base falls back to the shell's
-// NEXT_PUBLIC_SITE_URL. Every claim in the description is a plan fixture
-// fact (telephony/frappe/src/fixtures/Subscription_Plan/*.json: plan_name
-// Free/Pro, billing_cycle Monthly/Yearly, currency USD, the feature lines,
-// trial_period_days 14 on Pro).
+// no `ogImage`: base's generated card draws the tagline on its own. No
+// `url`: the storefront's host is not fixed in any source yet; base falls
+// back to the shell's NEXT_PUBLIC_SITE_URL.
 //
-// PLACEHOLDER: "Rokct Telephony" is not a product name any source carries -
-// no telephony source names the product (the fixtures say "Telephony Free"
-// / "Telephony Pro", control's sign-up page "a Telephony Plan"). It is the
-// same "<platform> <category>" stand-in hosting-site-metadata.ts uses
-// ("Rokct Hosting"), flagged in the 1.1.0 PR body; replace `siteName` and
-// the `title` prefix when Ray names the product.
+// 1.2.0: the words are the approved landing's (Ray, 2026-11-01): the
+// description is the `/` page's own (TELEPHONY_META in
+// telephony-landing-config.ts) and the tagline its headline, so a shared
+// link says what the page says - a local landline number for South African
+// small businesses - and no longer the plan fixtures' dollar Free/Pro facts.
+//
+// The product's name is TELEPHONY_SITE_NAME (telephony-brand.ts), a
+// PLACEHOLDER (the concept's Rokct Telephony) until Ray names the product; change it
+// there and the title, the site name and the landing follow.
+
+import { TELEPHONY_SITE_NAME } from "@/components/custom/landing/telephony-brand";
+import { TELEPHONY_META } from "@/components/custom/landing/telephony-landing-config";
 
 /** The subset of base_sdk >= 1.15.0's SiteMetadataCopy this module fills. */
 export interface TelephonySiteMetadata {
@@ -59,14 +61,11 @@ export interface TelephonySiteMetadata {
 }
 
 const TELEPHONY_SITE_METADATA: TelephonySiteMetadata = {
-  // Placeholder product name - see the header comment.
-  siteName: "Rokct Telephony",
-  title: "Rokct Telephony — SIP lines, call routing, call history",
-  tagline: "SIP lines, call routing and call history on one telephony plan",
-  description:
-    "Telephony plans from Rokct: Free and Pro, billed monthly or yearly in USD, from one dedicated SIP line with 7 days of call history to multi-line SIP support with IVR and call routing, call history and analytics, and a 14-day trial on Pro.",
-  // Fixture feature lines and the plan category, plus the platform name.
-  keywords: ["telephony", "SIP line", "call routing", "call history", "IVR", "Rokct"],
+  siteName: TELEPHONY_SITE_NAME,
+  title: TELEPHONY_SITE_NAME,
+  tagline: "A landline number that rings anywhere.",
+  description: TELEPHONY_META.description,
+  keywords: ["hosted business phone lines", "landline number", "call routing", "IVR", "South Africa"],
   locale: "en_ZA",
 };
 
