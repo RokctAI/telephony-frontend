@@ -106,7 +106,7 @@ export const TELEPHONY_FOOTER_NAV: TelephonyAnchor[] = [
 export const TELEPHONY_HEADER = {
   themeLabel: "Toggle light and dark",
   login: "Log in",
-  start: "Start free",
+  start: "Get your number",
   menuLabel: "Menu",
   navLabel: "Primary",
 } as const;
@@ -122,7 +122,7 @@ export const TELEPHONY_HERO = {
   headline: "A landline number that rings ",
   highlight: "anywhere.",
   lede: "A normal landline only rings where it was installed, at home or in the office. You get a local landline number in your area code that customers trust, and it rings on your phone wherever you are. There is no PBX to install.",
-  primary: "Start free",
+  primary: "Get your number",
   secondary: "Talk to us",
   trust: ["Starter from R0 a month", "Free calls on our network"],
   phone: {
@@ -396,6 +396,6 @@ export const TELEPHONY_FAQ = {
 export const TELEPHONY_FINAL = {
   heading: "Get your business number today.",
   text: "Starter is R0 a month, plus R50 once-off to reserve your number.",
-  primary: "Start free",
+  primary: "Get your number",
   secondary: "Talk to us",
 } as const;

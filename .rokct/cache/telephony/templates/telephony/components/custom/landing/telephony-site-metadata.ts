@@ -38,9 +38,9 @@
 // link says what the page says - a local landline number for South African
 // small businesses - and no longer the plan fixtures' dollar Free/Pro facts.
 //
-// The product's name is TELEPHONY_SITE_NAME (telephony-brand.ts), a
-// PLACEHOLDER (the concept's Rokct Telephony) until Ray names the product; change it
-// there and the title, the site name and the landing follow.
+// The product's name is TELEPHONY_SITE_NAME (telephony-brand.ts), "Rokct
+// Telecom" as Ray chose it; change it there and the title, the site name and
+// the landing follow.
 
 import { TELEPHONY_SITE_NAME } from "@/components/custom/landing/telephony-brand";
 import { TELEPHONY_META } from "@/components/custom/landing/telephony-landing-config";

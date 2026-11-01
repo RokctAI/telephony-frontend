@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.1
+
+* The product is named "Rokct Telecom", Ray's choice (2026-11-01), in
+  place of the concept's placeholder "Rokct Telephony".
+  `TELEPHONY_SITE_NAME` in `telephony-brand.ts` is the only place the name
+  is written, so the header wordmark ("Rokct" + "Telecom"), the `/` title,
+  `telephony-site-metadata.ts` and the footer credit
+  (`© 2026 Rokct Telecom · Built with ♥ by ROKCT`) all follow.
+* The header, hero and closing buttons read "Get your number" instead of
+  "Start free". Starter costs a once-off R50 to reserve the number, so
+  "free" misled. This copy reached main with the 1.2.0 merge (#65) after
+  that entry was written; 1.2.1 records it.
+
 ## 1.2.0
 
 New installs (app_type telephony), all under `components/custom/landing/`:

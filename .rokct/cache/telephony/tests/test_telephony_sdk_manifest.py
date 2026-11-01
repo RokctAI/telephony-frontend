@@ -84,7 +84,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.2.0")
+        self.assertEqual(self.manifest["version"], "1.2.1")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
@@ -280,7 +280,7 @@ class TestLandingTemplates(unittest.TestCase):
         self.assertNotIn("wordmark:", menu.group(1))
         self.assertNotIn("TODO", src)
 
-    def test_site_metadata_flags_the_placeholder_name(self):
+    def test_site_metadata_reads_the_chosen_name(self):
         src = read(
             os.path.join(
                 LANDING_TEMPLATES,
@@ -288,7 +288,8 @@ class TestLandingTemplates(unittest.TestCase):
             )
         )
         self.assertIn("siteName: TELEPHONY_SITE_NAME", src)
-        self.assertIn("PLACEHOLDER", src)
+        # 1.2.1: Ray named the product, so the name is no longer a placeholder.
+        self.assertNotIn("PLACEHOLDER", src)
         self.assertNotIn("USD", src)
         self.assertNotIn("icon:", src)
         self.assertNotIn("ogImage:", src)
@@ -336,7 +337,7 @@ class TestApprovedLanding(unittest.TestCase):
 
     def test_product_name_is_one_value(self):
         self.assertIn(
-            'export const TELEPHONY_SITE_NAME = "Rokct Telephony";',
+            'export const TELEPHONY_SITE_NAME = "Rokct Telecom";',
             self.src["telephony-brand.ts"],
         )
         # Written once in the whole SDK: everything else reads the constant.
@@ -344,7 +345,7 @@ class TestApprovedLanding(unittest.TestCase):
         for root, _, names in os.walk(TEMPLATES):
             for name in names:
                 path = os.path.join(root, name)
-                if '"Rokct Telephony"' in read(path):
+                if '"Rokct Telecom"' in read(path):
                     hits.append(os.path.relpath(path, TEMPLATES))
         self.assertEqual(
             hits, ["telephony/components/custom/landing/telephony-brand.ts"]
