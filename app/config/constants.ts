@@ -14,8 +14,8 @@
  * <title>, the site name, the description, the cards - is the home SDK's
  * (telephony_sdk's `components/custom/landing/telephony-site-metadata.ts`,
  * registered into base_sdk's site-metadata registry at compose time; its
- * siteName "Rokct Telephony" is a placeholder that SDK flags, no source
- * names the product). No product copy lives in this shell.
+ * siteName is "Rokct Telecom", the name Ray chose, since telephony_sdk
+ * 1.2.1). No product copy lives in this shell.
  *
  * The layout numbers keep rokctai_frontend's values: nothing in this shell
  * renders the country superscript they position (the neutral branding

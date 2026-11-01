@@ -37,8 +37,10 @@ shared catalog by category on the server.
 Composing adds `/landing` (the storefront), the `/admin` and `/manager`
 trees `base_sdk` owns, and the `/login`, `/register`, `/forgot-password` and
 `/api/auth/[...nextauth]` routes `auth_sdk` owns; `/` is `telephony_sdk`'s
-page, which sends every visitor to `/landing` (there is no signed-in home:
-the telephony portal is the control site's).
+page. Since `telephony_sdk` 1.2.0 it is the approved telephony landing (rand
+prices, South Africa only), and `/landing` stays as the control-site plans
+storefront. There is no signed-in home: the telephony portal is the control
+site's.
 
 Nothing composed is committed. Every path an installer writes is listed in
 the generated block at the end of [`.gitignore`](.gitignore). Because those

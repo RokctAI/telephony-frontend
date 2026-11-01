@@ -1,5 +1,69 @@
 # Changelog
 
+## 1.2.1
+
+* The product is named "Rokct Telecom", Ray's choice (2026-11-01), in
+  place of the concept's placeholder "Rokct Telephony".
+  `TELEPHONY_SITE_NAME` in `telephony-brand.ts` is the only place the name
+  is written, so the header wordmark ("Rokct" + "Telecom"), the `/` title,
+  `telephony-site-metadata.ts` and the footer credit
+  (`© 2026 Rokct Telecom · Built with ♥ by ROKCT`) all follow.
+* The header, hero and closing buttons read "Get your number" instead of
+  "Start free". Starter costs a once-off R50 to reserve the number, so
+  "free" misled. This copy reached main with the 1.2.0 merge (#65) after
+  that entry was written; 1.2.1 records it.
+
+## 1.2.0
+
+New installs (app_type telephony), all under `components/custom/landing/`:
+`telephony-landing.tsx`, `telephony-landing.client.tsx`,
+`telephony-landing-config.ts`, `telephony-brand.ts`, `telephony-fonts.ts`
+and `telephony-landing.css`.
+
+* `/` is the telephony landing Ray approved on 2026-11-01 ("proceed"),
+  instead of a redirect to `/landing`. It follows the concept's look and
+  copy: a hosted business line for South African small businesses, priced
+  in rand. The page has a header with a light/dark switch and a phone
+  menu, the hero with the ringing phone, four outcomes, a call-flow board
+  (business tabs, menu keys, the phone that rings and the call log), five
+  setup steps, what's included, a customer-portal sketch, example menus,
+  the three plans with a Pro line calculator, the FAQ, a closing call to
+  action and the footer.
+* Plans: Starter is R0 a month plus a once-off R50 that reserves the
+  number, and a number unused for 3 months is released. Pro is R185 per
+  line a month and includes R185 of airtime. Unlimited is R699, locked and
+  labelled "Soon". Every plan gets free, unlimited calls on our network.
+* The product's name is one value, `TELEPHONY_SITE_NAME` in
+  `telephony-brand.ts`. It is the concept's "Rokct Telephony", a
+  placeholder until Ray names the product. The header wordmark, the
+  footer, the `/` title and `telephony-site-metadata.ts` all read it.
+* Every word is in `telephony-landing-config.ts`, the way agent_sdk keeps
+  rokct.ai's in `agent-landing-config.ts`. The entry module is server-safe
+  and the interactive parts live in `telephony-landing.client.tsx`.
+* Teal accent, #0F7A6E light and #2DD4BF dark. The tokens are scoped to
+  `.tel` and follow the shell's next-themes class. The fonts are Gabarito,
+  Geist and Geist Mono through `next/font/google`.
+* Icons are Remixicon only. The block now declares `@remixicon/react` and
+  `next-themes` as dependencies.
+* The footer ends with base_sdk's `SiteCredit`:
+  `© 2026 Rokct Telephony · Built with ♥ by ROKCT`, with the heart
+  aria-labelled "love". The telephony block's base_sdk floor rises to
+  1.54.0.
+* No client showcase.
+* The talk box's "Talk to us" button is drawn only once
+  `TELEPHONY_PRICING.talk.href` is set. No source names a contact channel
+  yet. The hero and closing "Talk to us" buttons scroll to that box.
+* `telephony-site-metadata.ts` takes its description from the landing and
+  its tagline from the landing's headline, so it no longer states the plan
+  fixtures' USD facts. base_sdk's `/landing` storefront and the other
+  registry modules are unchanged. `app_type.control` is unchanged.
+
+## 1.1.3
+
+* fix(icons): the telephony portal and control pages import their icons
+  from `@remixicon/react` instead of lucide-react. The manifest declares
+  `@remixicon/react` ^4.6.0 in place of lucide-react.
+
 ## 1.1.2
 
 * The storefront hero no longer offers a call to action that goes nowhere.

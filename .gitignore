@@ -64,6 +64,7 @@ next-env.d.ts
 /app/(auth)/register-provision.ts
 /app/(auth)/register/page.tsx
 /app/(auth)/register/register-view.tsx
+/app/(auth)/return-to.ts
 /app/(auth)/tenant-host.ts
 /app/(auth)/tenant-link-database.ts
 /app/(auth)/tenant-link-single.ts
@@ -117,6 +118,7 @@ next-env.d.ts
 /app/services/base/tenant-host-control.ts
 /app/services/base/tenant-hosts.ts
 /app/services/control/global_settings.ts
+/app/site-shots/\[file\]/route.ts
 /app/styles/rokct-marquee.css
 /app/styles/rokct-scroll.css
 /app/twitter-image.tsx
@@ -127,6 +129,7 @@ next-env.d.ts
 /components/custom/back-to-top.tsx
 /components/custom/beta-toggle.tsx
 /components/custom/download-buttons.tsx
+/components/custom/flip-card.tsx
 /components/custom/footer-chrome.tsx
 /components/custom/header-menu.tsx
 /components/custom/header.tsx
@@ -134,6 +137,7 @@ next-env.d.ts
 /components/custom/hero.tsx
 /components/custom/install-offer.tsx
 /components/custom/landing-content.tsx
+/components/custom/landing/back-to-top-style.ts
 /components/custom/landing/back-to-top.ts
 /components/custom/landing/brand-marks.ts
 /components/custom/landing/download-platform.ts
@@ -152,11 +156,19 @@ next-env.d.ts
 /components/custom/landing/page-sections.ts
 /components/custom/landing/plans-query.ts
 /components/custom/landing/platform-glyphs.tsx
+/components/custom/landing/site-credit.ts
 /components/custom/landing/site-frame.ts
 /components/custom/landing/site-metadata.ts
+/components/custom/landing/site-shots.ts
+/components/custom/landing/telephony-brand.ts
+/components/custom/landing/telephony-fonts.ts
 /components/custom/landing/telephony-header-menu.ts
 /components/custom/landing/telephony-hero-copy.ts
 /components/custom/landing/telephony-hero-form.tsx
+/components/custom/landing/telephony-landing-config.ts
+/components/custom/landing/telephony-landing.client.tsx
+/components/custom/landing/telephony-landing.css
+/components/custom/landing/telephony-landing.tsx
 /components/custom/landing/telephony-page-sections.ts
 /components/custom/landing/telephony-plans-query.ts
 /components/custom/landing/telephony-site-metadata.ts
@@ -169,6 +181,8 @@ next-env.d.ts
 /components/custom/network-strip.tsx
 /components/custom/paas-login.tsx
 /components/custom/session-provider.tsx
+/components/custom/site-back-to-top.ts
+/components/custom/site-credit.tsx
 /components/custom/site-frame.tsx
 /components/custom/site-theme.tsx
 /components/custom/submit-button.tsx
@@ -190,8 +204,10 @@ next-env.d.ts
 /lib/site-data/generate.mjs
 /lib/site-data/generated.ts
 /lib/site-data/kinds.ts
+/lib/site-data/order-email.ts
 /lib/site-data/read-site-data.ts
 /lib/site-data/site-theme.ts
+/lib/site-data/validate-site.mjs
 /lib/site-data/validate.mjs
 /middleware.ts
 /public/brand/marks/app-gallery.svg
