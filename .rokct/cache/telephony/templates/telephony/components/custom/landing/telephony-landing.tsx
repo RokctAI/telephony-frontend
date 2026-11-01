@@ -46,9 +46,11 @@ import {
 } from "@remixicon/react";
 
 import { SiteCredit } from "@/components/custom/site-credit";
+import { hasHeaderAuth } from "@/components/custom/landing/header-auth";
 import { LANDING_CONFIG } from "@/components/custom/landing/landing-config";
 
 import { TELEPHONY_SITE_NAME, telephonyWordmark } from "./telephony-brand";
+import { TelephonyLogo } from "./telephony-logo";
 import {
   TELEPHONY_FAQ,
   TELEPHONY_FEATURES,
@@ -155,7 +157,13 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
   return (
     <div className={`tel ${fontClassName}`.trim()}>
       <TelephonyReveal />
-      <TelephonyHeader siteName={TELEPHONY_SITE_NAME} stem={stem} suffix={suffix} loginUrl={loginUrl} />
+      <TelephonyHeader
+        siteName={TELEPHONY_SITE_NAME}
+        stem={stem}
+        suffix={suffix}
+        loginUrl={loginUrl}
+        signupUrl={signupUrl}
+      />
 
       <main>
         <section className="hero" id="hero">
@@ -577,6 +585,7 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
 
       <footer>
         <div className="wrap foot">
+          <TelephonyLogo className="brand foot-brand" />
           <SiteCredit as="span" siteName={TELEPHONY_SITE_NAME} heartClassName="heart" />
           <nav>
             {TELEPHONY_FOOTER_NAV.map((item) => (
@@ -584,7 +593,8 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                 {item.label}
               </a>
             ))}
-            <a href={loginUrl}>{TELEPHONY_HEADER.login}</a>
+            {/* 1.3.0: only where an SDK fills the header auth slot (a shell with sign-in). */}
+            {hasHeaderAuth() && <a href={loginUrl}>{TELEPHONY_HEADER.login}</a>}
           </nav>
         </div>
       </footer>

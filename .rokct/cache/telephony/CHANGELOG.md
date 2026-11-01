@@ -1,5 +1,57 @@
 # Changelog
 
+## 1.4.0
+
+The Rokct Telecom logo, as Ray chose it (2026-11-01): a teal `#0F7A6E`
+rounded tile with a white "rt" mark, and the wordmark "Rokct **Telecom**"
+with Telecom in bold. 1.3.0 is the header-auth change in hardware#69, which
+merges first.
+
+New installs (app_type telephony): `components/custom/landing/telephony-logo.tsx`,
+`app/icon.svg`, `app/apple-icon.png` and `public/rokct-telecom-icon.png`.
+
+* `telephony-logo.tsx` is the logo in one component: `TelephonyMark` (the
+  tile and the "rt") and `TelephonyLogo` (the mark plus the wordmark,
+  linked to `/`). It is server-safe, so the server-rendered footer and the
+  client header both use it.
+* The landing header and the footer draw `TelephonyLogo` in place of the
+  concept's ink tile with call arcs. The link always goes to `/`. The open
+  phone menu drops below the header bar, which already shows the logo, so
+  the menu draws no second one.
+* Light and dark: the tile stays the brand teal in both themes
+  (`--mark-tile` in `telephony-landing.css`). In dark it gets a faint ring
+  so it stands off the near-black page. The wordmark uses the theme's ink.
+* Favicon and app icons: `app/icon.svg` (the mark) and `app/apple-icon.png`
+  (180px, full-bleed teal, because iOS rounds the corners itself), which Next
+  serves by file convention. `public/rokct-telecom-icon.png` (512px) is
+  registered as `icon` in `telephony-site-metadata.ts`. That covers the case
+  where base_sdk's on-disk check can't see the app icon files (its known
+  standalone-build limitation), so the browser tab never falls back to the
+  generated letter tile.
+* `telephony-header-menu.ts` now sets `brand: { logo: "auto" }` instead of
+  `"none"`, so base's header on `/landing` draws the registered mark next
+  to the wordmark.
+* Icons in the landing are still Remixicon only. The mark is brand artwork,
+  not an icon.
+
+## 1.3.0
+
+* Log in and Sign up in the header come from the SDK that owns sign-in
+  (Ray, 2026-11-01: "sites that have auth sdk i think they should get the
+  login signup buttons in header", and "we just moving login and signup
+  buttons to injection"). `TelephonyHeader` renders base_sdk 1.60.0's
+  `HeaderAuthSlot` in `.nav-end` and in `#tel-mobile-menu` in place of its
+  hard-coded "Log in" link: quiet `.login` links on the bar (hidden below
+  the phone breakpoint, as Log in was) and plain rows in the phone menu.
+  "Get your number" stays as it was. auth_sdk >= 1.11.0 fills the slot; a
+  shell without it shows neither, and the footer's "Log in" shows only when
+  something fills it (`hasHeaderAuth()`).
+* `TelephonyHeader` takes `signupUrl` (the landing passes
+  `LANDING_CONFIG.signupUrl`).
+* `components/custom/header-auth-slot.tsx` and
+  `components/custom/landing/header-auth.ts` join `requires`: needs
+  base_sdk >= 1.60.0.
+
 ## 1.2.1
 
 * The product is named "Rokct Telecom", Ray's choice (2026-11-01), in

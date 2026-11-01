@@ -25,6 +25,7 @@
   --bg:#F5F0E6; --bg-2:#EDE6D8; --surface:#FFFDF8; --ink:#17130E; --ink-2:#4E463B; --ink-3:#7D7364;
   --line:#DDD3C1; --line-2:#CBBFA9;
   --accent:#0F7A6E; --accent-ink:#FFFFFF; --accent-soft:#CDEBE5;
+  --mark-tile:#0F7A6E; --mark-ink:#FFFFFF; --mark-ring:transparent;
   --live:#14946B; --live-soft:#CDEFE0;
   --panel:#17130E; --panel-2:#221D16; --panel-ink:#F5F0E6; --panel-ink-2:#B9AE9C; --panel-line:#3A3227;
   --shadow:0 1px 0 rgba(23,19,14,.04),0 18px 40px -18px rgba(23,19,14,.25);
@@ -40,6 +41,7 @@
   --bg:#110F0C; --bg-2:#18150F; --surface:#1D1913; --ink:#F4EEE3; --ink-2:#C4B9A7; --ink-3:#8E8372;
   --line:#2F2920; --line-2:#40382C;
   --accent:#2DD4BF; --accent-ink:#04201C; --accent-soft:#0F2E2A;
+  --mark-ring:rgba(244,238,227,.14);
   --live:#3DD19E; --live-soft:#123326;
   --panel:#1A1611; --panel-2:#241F18; --panel-ink:#F4EEE3; --panel-ink-2:#A89D8B; --panel-line:#3A3227;
   --shadow:0 1px 0 rgba(0,0,0,.3),0 24px 50px -20px rgba(0,0,0,.7);
@@ -69,9 +71,13 @@ html:has(.tel){scroll-behavior:smooth}
 .tel header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
 .tel header.top.scrolled{border-bottom-color:var(--line)}
 .tel .nav{display:flex;align-items:center;gap:28px;height:76px}
-.tel .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em}
-.tel .brand small{font-family:var(--body);font-weight:500;color:var(--ink-3);font-size:15px;letter-spacing:0}
-.tel .mark{width:34px;height:34px}
+/* the logo (1.4.0): the Rokct Telecom mark - the brand teal tile and white
+   "rt" in BOTH themes (--mark-tile), ringed in dark so it lifts off the
+   near-black page - and the wordmark "Rokct **Telecom**" in the theme ink. */
+.tel .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:400;font-size:21px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.tel .brand b{font-weight:800}
+.tel .brand:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:10px}
+.tel .mark{width:34px;height:34px;flex:none;border-radius:8.5px;box-shadow:0 0 0 1px var(--mark-ring)}
 .tel .nav-links{display:flex;gap:26px;margin-left:18px;font-size:15px;color:var(--ink-2)}
 .tel .nav-links a:hover{color:var(--ink)}
 .tel .nav-end{margin-left:auto;display:flex;align-items:center;gap:10px}
@@ -301,6 +307,8 @@ html:has(.tel){scroll-behavior:smooth}
 .tel footer{border-top:1px solid var(--line);padding:36px 0 48px;font-size:14px;color:var(--ink-3)}
 .tel .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 .tel .foot nav{display:flex;gap:22px;flex-wrap:wrap}
+.tel .foot-brand{font-size:18px}
+.tel .foot-brand .mark{width:28px;height:28px;border-radius:7px}
 .tel .heart{color:var(--accent)}
 
 /* reveal: hidden only once the client has armed it, so the page reads
