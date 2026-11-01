@@ -3,11 +3,10 @@
  * `requires`; read by the SDK-installed team switcher, hero config and by
  * this shell's `components/custom/branding.tsx` / `brand-logo.tsx`.
  *
- * Deliberately NEUTRAL. `PLATFORM_NAME` comes from `./constants` (auth_sdk's
- * seam, re-exported here the way rokctai_frontend does): the platform's
- * wordmark, never a product's - the product's name and copy are the home
- * SDK's, registered into base_sdk's site-metadata registry at compose
- * time. The remote-branding resolver in RokctAI/rokctai_frontend's copy of
+ * `PLATFORM_NAME` comes from `./constants` (auth_sdk's seam, re-exported
+ * here the way rokctai_frontend does): the wordmark, "Rokct Telecom" since
+ * 2026-11-01. The rest of the product's copy is the home SDK's, registered
+ * into base_sdk's site-metadata registry at compose time. The remote-branding resolver in RokctAI/rokctai_frontend's copy of
  * this file is not mirrored: it depends on `@/app/actions/branding`, a
  * control-plane server action this shell does not compose. Both resolvers
  * therefore answer with the local name.

@@ -4,11 +4,11 @@
  * Host-owned wordmark seam. Named in base_sdk's and auth_sdk's manifest
  * `requires`; rendered by base_sdk's landing header and hero.
  *
- * NEUTRAL BY DESIGN. It prints `PLATFORM_NAME` from `@/app/config/platform`
- * - the platform's wordmark, the same one rokctai_frontend shows - and
- * nothing else: no product name, no logo file, no colour of its own. The
- * product's name and copy are the home SDK's, registered into base_sdk's
- * site-metadata registry at compose time; this file never carries them.
+ * PLAIN BY DESIGN. It prints `PLATFORM_NAME` from `@/app/config/platform`
+ * ("Rokct Telecom" since 2026-11-01, beside telephony_sdk's registered mark)
+ * and nothing else: no logo file, no colour of its own. The rest of the
+ * product's copy is the home SDK's, registered into base_sdk's
+ * site-metadata registry at compose time; this file never carries it.
  * RokctAI/rokctai_frontend's copy resolves a remote branding record
  * (name/country-code/beta badge) through a control-plane server action this
  * shell does not compose; mirroring that here would put a second, divergent
