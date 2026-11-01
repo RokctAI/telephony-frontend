@@ -26,8 +26,16 @@
 // and the registry checks the default export structurally when it loads
 // this module.
 //
-// No `icon`: the SDK ships no icon file, so base_sdk >= 1.17.0 draws the
-// fallback favicon (the domain's first letter) itself. No `still`, no `logo`,
+// `icon` (1.4.0): the Rokct Telecom mark Ray chose (2026-11-01), the 512px
+// PNG this block installs at public/rokct-telecom-icon.png. The block also
+// installs app/icon.svg and app/apple-icon.png, which Next serves by file
+// convention and which win whenever base_sdk's on-disk check sees them; the
+// registered icon is the answer when that check cannot (base_sdk's known
+// standalone-build limitation), so the favicon is the mark either way and
+// never the generated letter tile. A raster of 180px or more doubles as the
+// Apple touch icon, and base's header draws it as the logo on /landing
+// (telephony-header-menu.ts, brand.logo "auto"). Until 1.3.x there was no
+// icon and base drew the letter tile. No `still`, no `logo`,
 // no `ogImage`: base's generated card draws the tagline on its own. No
 // `url`: the storefront's host is not fixed in any source yet; base falls
 // back to the shell's NEXT_PUBLIC_SITE_URL.
@@ -53,6 +61,8 @@ export interface TelephonySiteMetadata {
   siteName?: string;
   url?: string;
   keywords?: string[];
+  /** The favicon (a public path); the Rokct Telecom mark since 1.4.0. */
+  icon?: string;
   /** A ready-made png/jpg preview; none here, base generates one. */
   ogImage?: string;
   /** Asset path drawn into the generated preview image; none here. */
@@ -67,6 +77,7 @@ const TELEPHONY_SITE_METADATA: TelephonySiteMetadata = {
   description: TELEPHONY_META.description,
   keywords: ["hosted business phone lines", "landline number", "call routing", "IVR", "South Africa"],
   locale: "en_ZA",
+  icon: "/rokct-telecom-icon.png",
 };
 
 export default TELEPHONY_SITE_METADATA;

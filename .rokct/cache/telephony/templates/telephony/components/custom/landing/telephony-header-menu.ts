@@ -30,19 +30,23 @@
 // Log in and Sign up beside the row (components/custom/header.tsx, the auth
 // link and the auth pill), and a second pair would only repeat them.
 //
-// `brand: { logo: "none" }` (base_sdk >= 1.21.0's HeaderMenu.brand): the
+// `brand: { logo: "auto" }` (base_sdk >= 1.21.0's HeaderMenu.brand): the
 // home SDK declares whether the header shows a logo (Ray, 2026-09-09,
-// 14:15Z), and no telephony artwork exists in any source, so the header
-// draws no image and the wordmark (the host's branding.tsx) is the logo.
-// `wordmark` is left at its default, true. Against a base_sdk older than
-// 1.21.0 the field is unknown to the registry's HeaderMenu type and the
-// compose fails to type-check, which is the floor the manifest names.
+// 14:15Z). Since 1.4.0 there is telephony artwork - the Rokct Telecom mark
+// Ray chose on 2026-11-01 - registered as the `icon` in
+// telephony-site-metadata.ts, and "auto" draws that registered icon beside
+// the wordmark (the host's branding.tsx) on base's header at /landing.
+// Until 1.3.x the logo was "none": no artwork existed, so the wordmark was
+// drawn alone. `wordmark` is left at its default, true. Against a base_sdk
+// older than 1.21.0 the field is unknown to the registry's HeaderMenu type
+// and the compose fails to type-check, which is the floor the manifest
+// names.
 
 import type { HeaderMenu } from "@/components/custom/landing/header-menu";
 
 const TELEPHONY_HEADER_MENU: HeaderMenu = {
-  // No telephony icon yet: the wordmark alone (Ray, 2026-09-09).
-  brand: { logo: "none" },
+  // The registered Rokct Telecom mark beside the wordmark (1.4.0).
+  brand: { logo: "auto" },
   anchors: ["features", "pricing"],
 };
 

@@ -13,11 +13,11 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 """Invariants over telephony_sdk's Next.js manifest and its storefront
-templates (telephony/nextjs, 1.2.0): the two app_type halves, the landing
+templates (telephony/nextjs, 1.4.0): the two app_type halves, the landing
 half's registrations against base_sdk's landing registries, the plans-query
-literal, the no-invented-copy rule, and the approved `/` landing (1.2.0):
+literal, the no-invented-copy rule, the approved `/` landing (1.2.0):
 its rand prices, the one product-name value, Remixicon only and the footer
-credit.
+credit, and the Rokct Telecom logo and icons (1.4.0).
 
 Run:  python -m pytest telephony/nextjs/tests -q
   or: python telephony/nextjs/tests/test_telephony_sdk_manifest.py
@@ -60,7 +60,20 @@ LANDING_PAGE_FILES = (
     "telephony-landing.tsx",
     "telephony-landing.client.tsx",
     "telephony-landing.css",
+    "telephony-logo.tsx",
 )
+
+# The Rokct Telecom logo (1.4.0): the chosen artwork's geometry and colours.
+BRAND_TEAL = "#0F7A6E"
+MARK_PATHS = (
+    "M17.75 48V39A8.5 8.5 0 0 1 26.25 30.5H49.75",
+    "M37.75 16V38.5A6 6 0 0 0 43.75 44.5H48.25",
+)
+ICON_SVG = os.path.join(LANDING_TEMPLATES, "app", "icon.svg")
+APPLE_ICON = os.path.join(LANDING_TEMPLATES, "app", "apple-icon.png")
+PUBLIC_ICON = os.path.join(LANDING_TEMPLATES, "public", "rokct-telecom-icon.png")
+# Icon artwork carries the literal brand colour; binary files carry no header.
+BINARY_EXTENSIONS = (".png", ".ico", ".jpg", ".jpeg", ".webp")
 
 # The plan names the fixtures spell; never in the filter, only in prose.
 PLAN_NAMES = ("Telephony Free", "Telephony Pro")
@@ -72,9 +85,20 @@ def read(path):
 
 
 def landing_files():
+    """Every text template of the landing half (binary icons are skipped)."""
     for root, _, names in os.walk(LANDING_TEMPLATES):
         for name in names:
+            if name.lower().endswith(BINARY_EXTENSIONS):
+                continue
             yield os.path.join(root, name)
+
+
+def png_size(path):
+    """(width, height) from a PNG's IHDR chunk."""
+    with open(path, "rb") as f:
+        head = f.read(24)
+    assert head[:8] == b"\x89PNG\r\n\x1a\n", path
+    return int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")
 
 
 class TestManifestShape(unittest.TestCase):
@@ -84,7 +108,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.2.1")
+        self.assertEqual(self.manifest["version"], "1.4.0")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
@@ -169,7 +193,7 @@ class TestTelephonyBlock(unittest.TestCase):
 
     def test_installs_mirror_the_host_layout(self):
         installs = self.block["installs"]
-        self.assertEqual(len(installs), 15)
+        self.assertEqual(len(installs), 19)
         for entry in installs:
             self.assertTrue(entry["from"].startswith("templates/telephony/"), entry)
             self.assertEqual(entry["from"][len("templates/telephony/") :], entry["to"])
@@ -223,6 +247,7 @@ class TestTelephonyBlock(unittest.TestCase):
             [
                 "app/actions/base/landing.ts",
                 "app/landing/page.tsx",
+                "components/custom/landing/header-auth.ts",
                 "components/custom/landing/header-menu.ts",
                 "components/custom/landing/hero-copy.ts",
                 "components/custom/landing/hero-form.ts",
@@ -231,6 +256,7 @@ class TestTelephonyBlock(unittest.TestCase):
                 "components/custom/landing/plans-query.ts",
                 "components/custom/landing/site-credit.ts",
                 "components/custom/landing/site-metadata.ts",
+                "components/custom/header-auth-slot.tsx",
                 "components/custom/site-credit.tsx",
             ],
         )
@@ -275,8 +301,10 @@ class TestLandingTemplates(unittest.TestCase):
         self.assertNotIn("groups", menu.group(1))
         self.assertNotIn("links", menu.group(1))
         self.assertNotRegex(src, r"\.(png|svg|jpg|webp)")
-        # base_sdk 1.21.0's HeaderMenu.brand: the wordmark alone, no image.
-        self.assertIn('brand: { logo: "none" }', menu.group(1))
+        # base_sdk 1.21.0's HeaderMenu.brand. 1.4.0: "auto" draws the
+        # registered Rokct Telecom icon beside the wordmark (was "none").
+        self.assertIn('brand: { logo: "auto" }', menu.group(1))
+        self.assertNotIn('logo: "none"', menu.group(1))
         self.assertNotIn("wordmark:", menu.group(1))
         self.assertNotIn("TODO", src)
 
@@ -291,7 +319,12 @@ class TestLandingTemplates(unittest.TestCase):
         # 1.2.1: Ray named the product, so the name is no longer a placeholder.
         self.assertNotIn("PLACEHOLDER", src)
         self.assertNotIn("USD", src)
-        self.assertNotIn("icon:", src)
+        # 1.4.0: the Rokct Telecom mark is the registered favicon, a file
+        # this block installs, so the letter tile is never drawn.
+        self.assertIn('icon: "/rokct-telecom-icon.png"', src)
+        with open(MANIFEST, "r", encoding="utf-8") as f:
+            block = json.load(f)["app_type"]["telephony"]
+        self.assertIn("public/rokct-telecom-icon.png", {e["to"] for e in block["installs"]})
         self.assertNotIn("ogImage:", src)
 
     def test_pricing_section_stands_down_without_rows(self):
@@ -306,6 +339,8 @@ class TestLandingTemplates(unittest.TestCase):
 
     def test_no_forbidden_words_no_literal_colours(self):
         page_files = {os.path.join(LANDING_PAGE_DIR, n) for n in LANDING_PAGE_FILES}
+        # The favicon artwork is the brand teal itself (1.4.0).
+        page_files.add(ICON_SVG)
         for path in landing_files():
             if path in page_files:
                 continue
@@ -344,6 +379,8 @@ class TestApprovedLanding(unittest.TestCase):
         hits = []
         for root, _, names in os.walk(TEMPLATES):
             for name in names:
+                if name.lower().endswith(BINARY_EXTENSIONS):
+                    continue
                 path = os.path.join(root, name)
                 if '"Rokct Telecom"' in read(path):
                     hits.append(os.path.relpath(path, TEMPLATES))
@@ -420,6 +457,141 @@ class TestApprovedLanding(unittest.TestCase):
     def test_no_lorem(self):
         for word in ("lorem", "ipsum", "demo", "sample"):
             self.assertNotIn(word, self.all.lower(), word)
+
+
+class TestRokctTelecomLogo(unittest.TestCase):
+    """The logo Ray chose on 2026-11-01 (1.4.0)."""
+
+    def setUp(self):
+        self.logo = read(os.path.join(LANDING_PAGE_DIR, "telephony-logo.tsx"))
+        self.client = read(os.path.join(LANDING_PAGE_DIR, "telephony-landing.client.tsx"))
+        self.page = read(os.path.join(LANDING_PAGE_DIR, "telephony-landing.tsx"))
+        self.css = read(os.path.join(LANDING_PAGE_DIR, "telephony-landing.css"))
+        with open(MANIFEST, "r", encoding="utf-8") as f:
+            self.block = json.load(f)["app_type"]["telephony"]
+
+    def test_mark_geometry_is_the_chosen_artwork(self):
+        for src in (self.logo, read(ICON_SVG)):
+            self.assertIn('viewBox="0 0 64 64"', src)
+            self.assertIn('width="64" height="64" rx="16"', src)
+            for d in MARK_PATHS:
+                self.assertIn(f'd="{d}"', src)
+
+    def test_logo_links_home_with_bold_suffix(self):
+        self.assertIn('<Link href="/" className={className}', self.logo)
+        self.assertIn("aria-label={`${siteName} home`}", self.logo)
+        self.assertIn("<b>{tail}</b>", self.logo)
+        self.assertNotIn('"use client"', self.logo)
+        self.assertNotIn("useState", self.logo)
+        self.assertIn("telephonyWordmark(siteName)", self.logo)
+
+    def test_header_and_footer_draw_the_logo_once(self):
+        self.assertIn('import { TelephonyLogo } from "./telephony-logo";', self.client)
+        self.assertIn("<TelephonyLogo siteName={siteName} stem={stem} suffix={suffix} />", self.client)
+        # Exactly one logo in the header; the open phone menu drops below
+        # the bar that already shows it, so it draws none of its own.
+        self.assertEqual(self.client.count("<TelephonyLogo"), 1)
+        menu = self.client.split('id="tel-mobile-menu"', 1)[1].split("</div>", 1)[0]
+        self.assertNotIn("TelephonyLogo", menu)
+        self.assertNotIn("menu-brand", self.client + self.css)
+        self.assertIn('import { TelephonyLogo } from "./telephony-logo";', self.page)
+        footer = self.page.split("<footer>", 1)[1].split("</footer>", 1)[0]
+        self.assertIn('<TelephonyLogo className="brand foot-brand" />', footer)
+        # The concept's ink tile with call arcs is gone.
+        for src in (self.client, self.page):
+            self.assertNotIn("function TelephonyMark", src)
+            self.assertNotIn("<small>{suffix}</small>", src)
+
+    def test_tile_is_brand_teal_in_both_themes(self):
+        self.assertIn(f"--mark-tile:{BRAND_TEAL}; --mark-ink:#FFFFFF;", self.css)
+        dark = self.css.split(".dark .tel{", 1)[1].split("}", 1)[0]
+        self.assertNotIn("--mark-tile", dark)
+        self.assertIn("--mark-ring:", dark)
+        self.assertIn('fill="var(--mark-tile)"', self.logo)
+        self.assertIn(".tel .brand b{font-weight:800}", self.css)
+        self.assertIn("color:var(--ink)", self.css.split(".tel .brand{", 1)[1].split("}", 1)[0])
+
+    def test_icon_files(self):
+        svg = read(ICON_SVG)
+        self.assertTrue(svg.startswith("<svg "))
+        self.assertIn(f'fill="{BRAND_TEAL}"', svg)
+        self.assertIn('stroke="#FFFFFF"', svg)
+        self.assertNotIn("<metadata", svg)
+        self.assertEqual(png_size(APPLE_ICON), (180, 180))
+        self.assertEqual(png_size(PUBLIC_ICON), (512, 512))
+        installed = {(e["from"], e["to"]) for e in self.block["installs"]}
+        for to in ("app/icon.svg", "app/apple-icon.png", "public/rokct-telecom-icon.png",
+                   "components/custom/landing/telephony-logo.tsx"):
+            self.assertIn((f"templates/telephony/{to}", to), installed)
+
+    def test_changelog_records_1_4_0(self):
+        log = read(os.path.join(SDK_DIR, "CHANGELOG.md"))
+        self.assertTrue(log.startswith("# Changelog\n\n## 1.4.0\n"))
+        self.assertIn("hardware#69", log.split("## 1.2.1", 1)[0])
+
+
+class TestHeaderAuthSlot(unittest.TestCase):
+    """1.3.0 (Ray, 2026-11-01: "we just moving login and signup buttons to
+    injection"): the header's Log in is no longer hard-coded; it renders
+    base_sdk 1.60.0's HeaderAuthSlot on the bar and in the phone menu, and
+    the footer's Log in shows only where the slot is filled."""
+
+    def setUp(self):
+        self.client = read(
+            os.path.join(LANDING_PAGE_DIR, "telephony-landing.client.tsx")
+        )
+        start = self.client.index("export function TelephonyHeader(")
+        self.header = self.client[
+            start : self.client.index("\nexport function ", start + 1)
+        ]
+        self.page = read(os.path.join(LANDING_PAGE_DIR, "telephony-landing.tsx"))
+
+    def test_slot_replaces_the_hard_coded_login(self):
+        self.assertIn(
+            'import { HeaderAuthSlot } from "@/components/custom/header-auth-slot";',
+            self.client,
+        )
+        self.assertNotIn("TELEPHONY_HEADER.login", self.header)
+        self.assertNotIn('className="login" href', self.header)
+        end = self.header[
+            self.header.index('<div className="nav-end">') : self.header.index(
+                'id="tel-mobile-menu"'
+            )
+        ]
+        self.assertIn(
+            '<HeaderAuthSlot variant="bar" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_BAR} />',
+            end,
+        )
+        self.assertIn('className="btn btn-primary hide-sm" href="#pricing"', end)
+        menu = self.header[self.header.index('id="tel-mobile-menu"') :]
+        self.assertIn(
+            '<HeaderAuthSlot variant="panel" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_MENU} />',
+            menu,
+        )
+        self.assertIn(
+            'const TELEPHONY_AUTH_BAR = { login: "login", signup: "login" };',
+            self.client,
+        )
+
+    def test_page_passes_both_routes_and_gates_the_footer(self):
+        self.assertIn("signupUrl={signupUrl}", self.page)
+        self.assertIn(
+            'import { hasHeaderAuth } from "@/components/custom/landing/header-auth";',
+            self.page,
+        )
+        self.assertIn(
+            "{hasHeaderAuth() && <a href={loginUrl}>{TELEPHONY_HEADER.login}</a>}",
+            self.page,
+        )
+
+    def test_names_no_auth_sdk(self):
+        imports = "\n".join(
+            line
+            for line in (self.client + self.page).splitlines()
+            if line.startswith("import ")
+        )
+        for gone in ("@/app/(auth)", "next-auth", "components/custom/auth/"):
+            self.assertNotIn(gone, imports)
 
 
 if __name__ == "__main__":

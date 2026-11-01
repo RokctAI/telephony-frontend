@@ -101,7 +101,9 @@ next-env.d.ts
 /app/admin/system/languages/page.tsx
 /app/admin/system/translations/page.tsx
 /app/admin/system/update/page.tsx
+/app/apple-icon.png
 /app/brand-icon/route.tsx
+/app/icon.svg
 /app/landing/page.tsx
 /app/lib/session.ts
 /app/lib/site-metadata.ts
@@ -125,12 +127,14 @@ next-env.d.ts
 /components/admin/GenericReport.tsx
 /components/custom/app-sidebar.tsx
 /components/custom/auth-form.tsx
+/components/custom/auth/header-auth-buttons.tsx
 /components/custom/auth/register-registry.ts
 /components/custom/back-to-top.tsx
 /components/custom/beta-toggle.tsx
 /components/custom/download-buttons.tsx
 /components/custom/flip-card.tsx
 /components/custom/footer-chrome.tsx
+/components/custom/header-auth-slot.tsx
 /components/custom/header-menu.tsx
 /components/custom/header.tsx
 /components/custom/hero-view.tsx
@@ -142,6 +146,7 @@ next-env.d.ts
 /components/custom/landing/brand-marks.ts
 /components/custom/landing/download-platform.ts
 /components/custom/landing/footer-chrome-config.ts
+/components/custom/landing/header-auth.ts
 /components/custom/landing/header-menu.ts
 /components/custom/landing/hero-config.ts
 /components/custom/landing/hero-copy.ts
@@ -169,6 +174,7 @@ next-env.d.ts
 /components/custom/landing/telephony-landing.client.tsx
 /components/custom/landing/telephony-landing.css
 /components/custom/landing/telephony-landing.tsx
+/components/custom/landing/telephony-logo.tsx
 /components/custom/landing/telephony-page-sections.ts
 /components/custom/landing/telephony-plans-query.ts
 /components/custom/landing/telephony-site-metadata.ts
@@ -215,5 +221,6 @@ next-env.d.ts
 /public/brand/marks/chrome-web-store.svg
 /public/brand/marks/google-play.svg
 /public/brand/marks/windows.svg
+/public/rokct-telecom-icon.png
 /types/next-auth.d.ts
 # @rokct-composed-end

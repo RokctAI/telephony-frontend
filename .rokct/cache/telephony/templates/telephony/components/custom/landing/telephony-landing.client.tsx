@@ -20,13 +20,16 @@
 // next-themes provider, the phone menu), the call-flow board (business tabs,
 // menu keys, the ringing phone and the call log, pressed on a timer), the
 // Pro line calculator and the reveal-on-scroll. Every word comes from
-// telephony-landing-config.ts.
+// telephony-landing-config.ts. The logo (mark + "Rokct **Telecom**",
+// linked to "/") is telephony-logo.tsx's, in the bar (1.4.0); the open
+// phone menu drops below that bar, so it draws no second logo.
 
 import { useTheme } from "next-themes";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { RiAddLine, RiContrast2Line, RiMenu3Line, RiPhoneLine, RiSubtractLine } from "@remixicon/react";
+
+import { HeaderAuthSlot } from "@/components/custom/header-auth-slot";
 
 import {
   PRO_LINES,
@@ -37,28 +40,28 @@ import {
   TELEPHONY_PRICING,
   proTotalLine,
 } from "./telephony-landing-config";
+import { TelephonyLogo } from "./telephony-logo";
 
-/** The brand mark: a rounded ink tile, the accent dot and two call arcs. */
-function TelephonyMark() {
-  return (
-    <svg className="mark" viewBox="0 0 34 34" aria-hidden="true">
-      <rect width="34" height="34" rx="10" fill="var(--ink)" />
-      <circle cx="17" cy="17" r="4" fill="var(--accent)" />
-      <path d="M10 17a7 7 0 0 1 7-7M24 17a7 7 0 0 1-7 7" stroke="var(--bg)" strokeWidth="2.2" fill="none" strokeLinecap="round" />
-    </svg>
-  );
-}
+// 1.3.0: Log in and Sign up are drawn by whatever SDK fills base's header
+// auth slot (base_sdk >= 1.60.0; auth_sdk registers it), in this header's
+// own classes: quiet `.login` links on the bar (hidden below the phone
+// breakpoint, as Log in was) and plain rows in the phone menu, which
+// closes on any tap. Nothing registered, nothing drawn.
+const TELEPHONY_AUTH_BAR = { login: "login", signup: "login" };
+const TELEPHONY_AUTH_MENU = { login: "menu-auth", signup: "menu-auth" };
 
 export function TelephonyHeader({
   siteName,
   stem,
   suffix,
   loginUrl,
+  signupUrl,
 }: {
   siteName: string;
   stem: string;
   suffix: string;
   loginUrl: string;
+  signupUrl: string;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -76,16 +79,7 @@ export function TelephonyHeader({
   return (
     <header className={scrolled ? "top scrolled" : "top"} id="top">
       <div className="wrap nav">
-        <Link href="/" className="brand" aria-label={`${siteName} home`}>
-          <TelephonyMark />
-          {stem}
-          {suffix && (
-            <>
-              {" "}
-              <small>{suffix}</small>
-            </>
-          )}
-        </Link>
+        <TelephonyLogo siteName={siteName} stem={stem} suffix={suffix} />
         <nav className="nav-links" aria-label={TELEPHONY_HEADER.navLabel}>
           {TELEPHONY_NAV.map((item) => (
             <a key={item.href} href={item.href}>
@@ -99,9 +93,7 @@ export function TelephonyHeader({
               <RiContrast2Line />
             </i>
           </button>
-          <Link className="login" href={loginUrl}>
-            {TELEPHONY_HEADER.login}
-          </Link>
+          <HeaderAuthSlot variant="bar" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_BAR} />
           <a className="btn btn-primary hide-sm" href="#pricing">
             {TELEPHONY_HEADER.start}
           </a>
@@ -125,7 +117,7 @@ export function TelephonyHeader({
             {item.label}
           </a>
         ))}
-        <Link href={loginUrl}>{TELEPHONY_HEADER.login}</Link>
+        <HeaderAuthSlot variant="panel" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_MENU} />
       </div>
     </header>
   );
