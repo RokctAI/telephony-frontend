@@ -68,7 +68,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.1.1")
+        self.assertEqual(self.manifest["version"], "1.1.2")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
