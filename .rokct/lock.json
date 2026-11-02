@@ -4,11 +4,11 @@
   "app_type": "telephony",
   "protocol": {
     "git": "https://github.com/RokctAI/The-Rokct-Protocol",
-    "ref": "cbf696ad60eade55f605d74aa599360c826f8a89",
+    "ref": "692924e743da09c8392812e50caecd2cd49c9e87",
     "vendored": ".rokct/cache/_composer",
     "files": {
-      "sdk_composer.py": "bc6ba6cbea6a470de4afd34d55606d1022cfedace14031010f63ccd38cc63d03",
-      "sdk_installer_base.py": "b72703da9e18bbecaac21e829c6a8123f0127e78c77be2be762cd7e769f11e5f"
+      "sdk_composer.py": "b437f486a72eed54418ee56bc464e3c016d83a0175d35f28adfd2a9fc37ca943",
+      "sdk_installer_base.py": "bc8825efdbb57877153823f4b72ae71f856f213dee6460c39be353c1389db806"
     }
   },
   "sdks": [
@@ -43,10 +43,10 @@
       "git": "https://github.com/RokctAI/Users",
       "path": "../Users/auth/nextjs",
       "ref": "main",
-      "commit": "6b8ab11be383309113b6cc004162ccaadb7655f7",
-      "version": "1.11.0",
+      "commit": "e7bf4bee5df30fc7d7d265d7c79deb1192a01aa8",
+      "version": "1.12.1",
       "install_py_sha256": "b9b0d4156a68d46f528be2b885eed17cc7dba21f6b4b48b2991ba2c3274ae21b",
-      "content_sha256": "a12f4695cc5e71cb1e41471f8df26a8e4a4b98119859236a331c09b52739b9e9"
+      "content_sha256": "b66a7408d06a6e51319b3a43440884930187ac533f0864ff1de375f2bdd02bcb"
     },
     {
       "name": "telephony_sdk",
@@ -55,7 +55,7 @@
       "git": "https://github.com/RokctAI/hardware",
       "path": "../hardware/telephony/nextjs",
       "ref": "main",
-      "commit": "01bab58780dc7f0d4baf688d9b2a98a4bd607f00",
+      "commit": "9e2156ac4ec00f6982500b32575ce09914b6eed8",
       "version": "1.4.0",
       "install_py_sha256": "5e4182ace62450b9feb6689aae032b8d4434e4ef368d071ab344ade58c1bf691",
       "content_sha256": "11c025257b03c6baff35a29bafb5ddca03b935872f60b9fbe007db9054d32170"
