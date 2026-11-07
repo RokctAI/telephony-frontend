@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "repo": "RokctAI/telephony-frontend",
+  "commit": "77daa5ebe5cfdaa12914a067af2a8c11d83b5148",
+  "taken_at": "2026-11-07T16:43:24Z",
+  "dir": "shots/77daa5ebe5cfdaa12914a067af2a8c11d83b5148",
+  "files": {
+    "desktop-light.webp": {
+      "width": 1200,
+      "height": 833,
+      "bytes": 50376,
+      "sha256": "6aa444ee64f50cb85328bd119a5352be2cd7ee4a45b1cc94eed9a0ecb4d7fae5"
+    },
+    "desktop-dark.webp": {
+      "width": 1200,
+      "height": 833,
+      "bytes": 50368,
+      "sha256": "eb43ca4e86dac09e2ff8037331147e9de315392e7cbfbee8992108876d23950a"
+    },
+    "option-light.webp": {
+      "width": 800,
+      "height": 500,
+      "bytes": 23388,
+      "sha256": "e4fd7b7fbcad4906cac18ee34b4ab4659336682b9837575cf161fafa5e041ef8"
+    },
+    "option-dark.webp": {
+      "width": 800,
+      "height": 500,
+      "bytes": 23014,
+      "sha256": "563e7c2b19462cb0625874d86e259de3249b1bd52710964b34b5d565d05fdc70"
+    },
+    "phone-light.webp": {
+      "width": 560,
+      "height": 1149,
+      "bytes": 37842,
+      "sha256": "e71c906222570ed557d5bf862ddfe62821768b5b7d337a276c011e560c5a6473"
+    },
+    "phone-dark.webp": {
+      "width": 560,
+      "height": 1149,
+      "bytes": 38670,
+      "sha256": "f2081f409ce20e507fcab3517bba5e848fa279aafe14a6dbf723980c639a4c5e"
+    }
+  }
+}
