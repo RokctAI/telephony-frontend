@@ -56,12 +56,15 @@ export function TelephonyHeader({
   suffix,
   loginUrl,
   signupUrl,
+  base = "",
 }: {
   siteName: string;
   stem: string;
   suffix: string;
   loginUrl: string;
   signupUrl: string;
+  /** Prefix for the landing's in-page anchors: "" on `/`, "/" on any other route (the auth pages, 1.5.0). */
+  base?: string;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -82,7 +85,7 @@ export function TelephonyHeader({
         <TelephonyLogo siteName={siteName} stem={stem} suffix={suffix} />
         <nav className="nav-links" aria-label={TELEPHONY_HEADER.navLabel}>
           {TELEPHONY_NAV.map((item) => (
-            <a key={item.href} href={item.href}>
+            <a key={item.href} href={`${base}${item.href}`}>
               {item.label}
             </a>
           ))}
@@ -94,7 +97,7 @@ export function TelephonyHeader({
             </i>
           </button>
           <HeaderAuthSlot variant="bar" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_BAR} />
-          <a className="btn btn-primary hide-sm" href="#pricing">
+          <a className="btn btn-primary hide-sm" href={`${base}#pricing`}>
             {TELEPHONY_HEADER.start}
           </a>
           <button
@@ -113,7 +116,7 @@ export function TelephonyHeader({
       </div>
       <div className={open ? "mobile-menu open" : "mobile-menu"} id="tel-mobile-menu" onClick={() => setOpen(false)}>
         {TELEPHONY_NAV.map((item) => (
-          <a key={item.href} href={item.href}>
+          <a key={item.href} href={`${base}${item.href}`}>
             {item.label}
           </a>
         ))}

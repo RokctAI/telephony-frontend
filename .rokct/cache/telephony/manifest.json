@@ -1,6 +1,6 @@
 {
     "name": "telephony_sdk",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "installs": [],
     "dependencies": {},
     "devDependencies": {},
@@ -135,6 +135,14 @@
                 {
                     "from": "templates/telephony/public/rokct-telecom-icon.png",
                     "to": "public/rokct-telecom-icon.png"
+                },
+                {
+                    "from": "templates/telephony/components/custom/site-shell.tsx",
+                    "to": "components/custom/site-shell.tsx"
+                },
+                {
+                    "from": "templates/telephony/components/custom/telecom-auth",
+                    "to": "components/custom/telecom-auth"
                 }
             ],
             "dependencies": {
@@ -210,6 +218,7 @@
         "app/landing/page.tsx": "app_type telephony: installed by base_sdk >= 1.5.0 (the control-site plans storefront at /landing; until 1.1.3 app/page.tsx redirected every visitor there, since 1.2.0 `/` draws the telephony landing and /landing stays as it was)",
         "components/custom/site-credit.tsx": "app_type telephony: installed by base_sdk >= 1.54.0 (SiteCredit, the footer's last line in telephony-landing.tsx)",
         "components/custom/landing/site-credit.ts": "app_type telephony: installed by base_sdk >= 1.54.0 (the pure half SiteCredit renders: the words, the year rule, the heart)",
-        "components/custom/header-auth-slot.tsx": "installed by base_sdk >= 1.60.0 with components/custom/landing/header-auth.ts (HeaderAuthSlot and the HEADER_AUTH registry: the header's Log in / Sign up slot, filled by the SDK that owns sign-in - auth_sdk >= 1.11.0 - and empty without one). TelephonyHeader renders it in .nav-end and in #tel-mobile-menu in place of its hard-coded Log in link, and the footer shows its Log in only when hasHeaderAuth() (Ray, 2026-11-01: sites that compose auth_sdk show Log in / Sign up in the header). telephony_sdk 1.3.0 therefore needs base_sdk >= 1.60.0"
+        "components/custom/header-auth-slot.tsx": "installed by base_sdk >= 1.60.0 with components/custom/landing/header-auth.ts (HeaderAuthSlot and the HEADER_AUTH registry: the header's Log in / Sign up slot, filled by the SDK that owns sign-in - auth_sdk >= 1.11.0 - and empty without one). TelephonyHeader renders it in .nav-end and in #tel-mobile-menu in place of its hard-coded Log in link, and the footer shows its Log in only when hasHeaderAuth() (Ray, 2026-11-01: sites that compose auth_sdk show Log in / Sign up in the header). telephony_sdk 1.3.0 therefore needs base_sdk >= 1.60.0",
+        "components/custom/site-shell.tsx": "app_type telephony (1.5.0): this block installs its own copy over auth_sdk's default. auth_sdk >= 1.12.0 is the floor: from 1.12.0 its login, register and forgot-password pages render inside SiteShell from this path (and 1.12.1 draws SiteShellLogo above the card); against auth_sdk 1.11.x the pages ignore this file and keep base's generic header. The telephony shell must compose auth_sdk >= 1.12.0 (telephony-frontend pinned 1.11.0 when this landed) to pick it up."
     }
 }

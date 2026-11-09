@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.5.0
+
+* Rokct Telecom login and register (Ray: every app shell gets its own
+  design for register and login; the pattern hosting_sdk 1.21.0 set for
+  Cortex). The telephony block, the home SDK, installs its own
+  `components/custom/site-shell.tsx` over auth_sdk's default: login,
+  register and forgot-password sit inside the landing's header and footer,
+  faces (Gabarito, Geist, Geist Mono) and tokens (cream and teal in light,
+  near-black and bright teal in dark), with a brand panel beside the card
+  (`components/custom/telecom-auth/`: its copy, which repeats only the
+  landing's plan facts, and its CSS, which maps the card's shadcn tokens to
+  the landing palette). The mark above the card is the teal "rt" tile.
+* `TelephonyHeader` takes an optional `base` prefix for its in-page anchors,
+  so on `/login` the nav links go to `/#features` and so on (default `""`,
+  so `/` is unchanged).
+* auth_sdk >= 1.12.0 is required for the seam (before 1.12.0 the auth pages
+  ignore `site-shell.tsx`). telephony-frontend pins auth_sdk 1.11.0 and must
+  refresh its lock to pick this up.
+* Presentation only: auth_sdk's views, actions and fields are untouched.
+
 ## 1.4.0
 
 The Rokct Telecom logo, as Ray chose it (2026-11-01): a teal `#0F7A6E`
