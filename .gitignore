@@ -193,6 +193,8 @@ next-env.d.ts
 /components/custom/site-shell.tsx
 /components/custom/site-theme.tsx
 /components/custom/submit-button.tsx
+/components/custom/telecom-auth/telecom-auth-copy.ts
+/components/custom/telecom-auth/telecom-auth.css
 /components/custom/telephony-features-section.tsx
 /components/custom/telephony-pricing-section.tsx
 /components/custom/theme-provider.client.tsx

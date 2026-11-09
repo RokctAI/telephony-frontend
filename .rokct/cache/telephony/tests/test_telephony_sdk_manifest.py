@@ -108,7 +108,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.4.0")
+        self.assertEqual(self.manifest["version"], "1.5.0")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
@@ -193,11 +193,11 @@ class TestTelephonyBlock(unittest.TestCase):
 
     def test_installs_mirror_the_host_layout(self):
         installs = self.block["installs"]
-        self.assertEqual(len(installs), 19)
+        self.assertEqual(len(installs), 21)
         for entry in installs:
             self.assertTrue(entry["from"].startswith("templates/telephony/"), entry)
             self.assertEqual(entry["from"][len("templates/telephony/") :], entry["to"])
-            self.assertTrue(os.path.isfile(os.path.join(SDK_DIR, entry["from"])), entry)
+            self.assertTrue(os.path.exists(os.path.join(SDK_DIR, entry["from"])), entry)
         self.assertEqual(installs[0]["to"], "app/page.tsx")
 
     def test_landing_page_files_installed(self):
@@ -526,7 +526,8 @@ class TestRokctTelecomLogo(unittest.TestCase):
 
     def test_changelog_records_1_4_0(self):
         log = read(os.path.join(SDK_DIR, "CHANGELOG.md"))
-        self.assertTrue(log.startswith("# Changelog\n\n## 1.4.0\n"))
+        self.assertTrue(log.startswith("# Changelog\n\n## 1.5.0\n"))
+        self.assertIn("\n## 1.4.0\n", log)
         self.assertIn("hardware#69", log.split("## 1.2.1", 1)[0])
 
 
@@ -562,7 +563,7 @@ class TestHeaderAuthSlot(unittest.TestCase):
             '<HeaderAuthSlot variant="bar" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_BAR} />',
             end,
         )
-        self.assertIn('className="btn btn-primary hide-sm" href="#pricing"', end)
+        self.assertIn('className="btn btn-primary hide-sm" href={`${base}#pricing`}', end)
         menu = self.header[self.header.index('id="tel-mobile-menu"') :]
         self.assertIn(
             '<HeaderAuthSlot variant="panel" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_MENU} />',

@@ -1,0 +1,83 @@
+/*
+ * Copyright (c) 2026 ROKCT INTELLIGENCE (PTY) LTD
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* telephony_sdk 1.5.0: the Rokct Telecom auth pages (../site-shell.tsx).
+   The frame, faces and tokens are the landing's (.tel in
+   telephony-landing.css); this file lays the brand panel beside auth_sdk's
+   card and maps the card's shadcn tokens (HSL triplets) to the landing
+   palette - cream and ink with the teal accent in light, near-black with
+   the bright teal in dark - so the card reads as Rokct Telecom. The card
+   redefines --accent as a shadcn triplet, so its own rules read the
+   landing's teal through --ta-acc, set on .ta above it. The
+   landing's `.tel *` reset zeroes margins and padding, so the card's
+   spacing is set again here. Scoped to .ta so no other route changes. */
+
+.tel .ta{--ta-acc:var(--accent);--ta-acc-ink:var(--accent-ink);padding:clamp(36px,6vw,88px) 0 clamp(48px,7vw,104px)}
+.tel .ta-g{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.tel .ta-h{margin-top:22px;font-size:clamp(44px,6vw,84px)}
+.tel .ta-h span{display:block}
+.tel .ta-h span:last-child{color:var(--accent)}
+.tel .ta-lede{margin-top:22px}
+.tel .ta-pts{list-style:none;margin-top:30px;border-top:1px solid var(--line);max-width:32em}
+.tel .ta-pts li{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4;color:var(--ink-2)}
+.tel .ta-pts li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.tel .ta-mark{display:inline-flex}
+.tel .ta-mark .mark{width:100%;height:100%;border-radius:25%}
+@media (max-width:860px){
+.tel .ta-g{grid-template-columns:minmax(0,1fr);gap:36px}
+.tel .ta-card{order:-1}
+.tel .ta-pts{display:none}
+.tel .ta-h{font-size:clamp(38px,11vw,60px)}
+}
+
+/* auth_sdk's page body: drop its own full-height centring and background */
+.tel .ta-card>div{min-height:0;background:transparent;padding:0}
+.tel .ta-card>div>div{max-width:none}
+.tel .ta-card{
+  --background:40 43% 93%;--foreground:33 24% 7%;--card:43 100% 99%;--card-foreground:33 24% 7%;
+  --popover:43 100% 99%;--popover-foreground:33 24% 7%;--primary:173 78% 27%;--primary-foreground:0 0% 100%;
+  --secondary:40 37% 89%;--secondary-foreground:33 24% 7%;--muted:40 37% 89%;--muted-foreground:36 11% 44%;
+  --accent:40 37% 89%;--accent-foreground:33 24% 7%;--border:39 29% 81%;--input:39 25% 73%;--ring:173 78% 27%;--radius:14px;
+  color:var(--ink);font-family:var(--body)
+}
+.dark .tel .ta-card{
+  --background:36 17% 6%;--foreground:39 44% 92%;--card:36 21% 9%;--card-foreground:39 44% 92%;
+  --popover:36 21% 9%;--popover-foreground:39 44% 92%;--primary:172 66% 50%;--primary-foreground:171 78% 7%;
+  --secondary:40 23% 8%;--secondary-foreground:39 44% 92%;--muted:36 19% 15%;--muted-foreground:36 11% 50%;
+  --accent:36 19% 15%;--accent-foreground:39 44% 92%;--border:36 19% 15%;--input:36 19% 21%;--ring:172 66% 50%
+}
+/* the spacing the reset took away (auth_sdk's space-y / m / p utilities) */
+.tel .ta-card .space-y-8>*+*{margin-top:32px}
+.tel .ta-card .space-y-6>*+*{margin-top:24px}
+.tel .ta-card .space-y-4>*+*{margin-top:16px}
+.tel .ta-card .mb-4{margin-bottom:16px}
+.tel .ta-card .mt-2{margin-top:8px}
+.tel .ta-card .mt-3{margin-top:12px}
+.tel .ta-card .mt-6{margin-top:24px}
+.tel .ta-card .pt-2{padding-top:8px}
+.tel .ta-card .p-8{padding:32px}
+.tel .ta-card label{display:block;margin-bottom:6px;font-family:var(--mono);font-size:11.5px;line-height:1.3;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.tel .ta-card h1{font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.02;font-size:clamp(30px,3vw,42px);color:var(--ink);text-wrap:balance}
+.tel .ta-card h1+p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+.tel .ta-card .bg-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:none}
+.tel .ta-card input:not([type="checkbox"]):not([type="hidden"]),.tel .ta-card [role="combobox"]{width:100%;height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px}
+.tel .ta-card input:focus-visible{outline:2px solid var(--ta-acc);outline-offset:1px;box-shadow:none}
+/* the submit: the landing's teal pill (.btn-primary) */
+.tel .ta-card button[type="submit"]{display:inline-flex;justify-content:center;align-items:center;width:100%;height:52px;margin-top:8px;border-radius:999px;background:var(--ta-acc);color:var(--ta-acc-ink);font-weight:600;font-size:16px;box-shadow:0 10px 24px -12px var(--ta-acc);transform:none;transition:transform .2s}
+.tel .ta-card button[type="submit"]:hover{transform:translateY(-2px)}
+.tel .ta-card .text-primary{color:var(--ta-acc);font-weight:600}
+.tel .ta-card .text-primary:hover{color:var(--ink)}
+.tel .ta-card .text-muted-foreground{color:var(--ink-3)}
