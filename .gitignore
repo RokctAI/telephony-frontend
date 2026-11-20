@@ -105,6 +105,10 @@ next-env.d.ts
 /app/brand-icon/route.tsx
 /app/icon.svg
 /app/landing/page.tsx
+/app/lib/i18n/sdk/auth.json
+/app/lib/i18n/sdk/base.json
+/app/lib/i18n/sdk/telemetry.json
+/app/lib/i18n/sdk/telephony.json
 /app/lib/session.ts
 /app/lib/site-metadata.ts
 /app/manager/layout.tsx

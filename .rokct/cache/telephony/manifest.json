@@ -1,6 +1,6 @@
 {
     "name": "telephony_sdk",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "installs": [],
     "dependencies": {},
     "devDependencies": {},
@@ -30,6 +30,10 @@
                 {
                     "from": "templates/control/app/portal/telephony",
                     "to": "app/portal/telephony"
+                },
+                {
+                    "from": "templates/telephony/app/lib/i18n/sdk/telephony.json",
+                    "to": "app/lib/i18n/sdk/telephony.json"
                 }
             ],
             "dependencies": {
@@ -55,7 +59,8 @@
                 "components/ui/input.tsx",
                 "components/ui/label.tsx",
                 "components/ui/table.tsx",
-                "components/ui/tabs.tsx"
+                "components/ui/tabs.tsx",
+                "app/lib/i18n/index.ts"
             ]
         },
         "telephony": {
@@ -143,6 +148,10 @@
                 {
                     "from": "templates/telephony/components/custom/telecom-auth",
                     "to": "components/custom/telecom-auth"
+                },
+                {
+                    "from": "templates/telephony/app/lib/i18n/sdk/telephony.json",
+                    "to": "app/lib/i18n/sdk/telephony.json"
                 }
             ],
             "dependencies": {

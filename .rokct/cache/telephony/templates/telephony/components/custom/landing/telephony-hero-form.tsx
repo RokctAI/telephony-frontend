@@ -43,6 +43,7 @@ import Link from "next/link";
 
 import type { HeroFormProps } from "@/components/custom/landing/hero-form";
 
+import t from "@/app/lib/i18n";
 const PRICING_SECTION_ID = "pricing";
 const PRICING_ANCHOR = `#${PRICING_SECTION_ID}`;
 
@@ -63,14 +64,14 @@ export default function TelephonyHeroForm({
           href={signupUrl}
           className="inline-flex w-full items-center justify-center rounded-full bg-primary px-8 py-3 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
         >
-          Subscribe to a Telephony Plan
+          {t("telephony.subscribe_to_a_telephony_plan")}
         </Link>
         {hasPricing && (
           <a
             href={PRICING_ANCHOR}
             className="inline-flex w-full items-center justify-center rounded-full border border-zinc-300 px-8 py-3 text-base font-semibold text-zinc-900 transition-colors hover:border-primary hover:text-primary dark:border-zinc-700 dark:text-white sm:w-auto"
           >
-            See pricing
+            {t("telephony.see_pricing")}
           </a>
         )}
       </div>

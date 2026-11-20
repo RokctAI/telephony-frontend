@@ -108,7 +108,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.5.0")
+        self.assertEqual(self.manifest["version"], "1.6.0")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
@@ -149,10 +149,15 @@ class TestControlBlockIntact(unittest.TestCase):
                     "app/handson/control/telephony",
                 ),
                 ("templates/control/app/portal/telephony", "app/portal/telephony"),
+                # 1.6.0: the control pages' copy (the one telephony.json).
+                (
+                    "templates/telephony/app/lib/i18n/sdk/telephony.json",
+                    "app/lib/i18n/sdk/telephony.json",
+                ),
             ],
         )
         for src, _ in installs:
-            self.assertTrue(os.path.isdir(os.path.join(SDK_DIR, src)), src)
+            self.assertTrue(os.path.exists(os.path.join(SDK_DIR, src)), src)
 
     def test_dependencies(self):
         self.assertEqual(
@@ -174,7 +179,7 @@ class TestControlBlockIntact(unittest.TestCase):
 
     def test_requires(self):
         self.assertIn("app/services/base/platform-gateway.ts", self.block["requires"])
-        self.assertEqual(len(self.block["requires"]), 11)
+        self.assertEqual(len(self.block["requires"]), 12)
 
     def test_control_block_touches_no_landing_registry(self):
         targets = {i["target"] for i in self.block["integrations"]}
@@ -193,7 +198,7 @@ class TestTelephonyBlock(unittest.TestCase):
 
     def test_installs_mirror_the_host_layout(self):
         installs = self.block["installs"]
-        self.assertEqual(len(installs), 21)
+        self.assertEqual(len(installs), 22)
         for entry in installs:
             self.assertTrue(entry["from"].startswith("templates/telephony/"), entry)
             self.assertEqual(entry["from"][len("templates/telephony/") :], entry["to"])
@@ -353,6 +358,8 @@ class TestLandingTemplates(unittest.TestCase):
 
     def test_license_header_on_every_template(self):
         for path in landing_files():
+            if path.endswith(".json"):
+                continue  # JSON (the i18n copy) cannot carry a comment header
             self.assertIn(LICENSE_FIRST_LINE, read(path).splitlines()[1], path)
 
     def test_install_py_is_generic(self):
@@ -526,7 +533,7 @@ class TestRokctTelecomLogo(unittest.TestCase):
 
     def test_changelog_records_1_4_0(self):
         log = read(os.path.join(SDK_DIR, "CHANGELOG.md"))
-        self.assertTrue(log.startswith("# Changelog\n\n## 1.5.0\n"))
+        self.assertTrue(log.startswith("# Changelog\n\n## 1.6.0\n"))
         self.assertIn("\n## 1.4.0\n", log)
         self.assertIn("hardware#69", log.split("## 1.2.1", 1)[0])
 
