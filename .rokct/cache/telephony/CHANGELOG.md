@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0
+
+* feat(i18n): 90 hardcoded screen labels, headings, buttons,
+  placeholders and empty-state lines in 7 files now go through
+  `t("telephony.<key>")` from `@/app/lib/i18n`. The copy ships in
+  `app/lib/i18n/sdk/telephony.json` (English and Afrikaans), which the host's
+  compose step registers (RokctAI_frontend#229).
+
 ## 1.5.0
 
 * Rokct Telecom login and register (Ray: every app shell gets its own
