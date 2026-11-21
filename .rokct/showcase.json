@@ -10,5 +10,13 @@
     "desktop": "latest/desktop-dark.webp",
     "phone": "latest/phone-dark.webp"
   },
-  "logo_back": null
+  "logo_back": null,
+  "features": [
+    "A landline number that rings on any phone",
+    "Caller menu and call routing",
+    "Five-step online sign-up with number choice",
+    "Set up phones by scanning a QR code",
+    "Top up with Paystack, manage lines online",
+    "Call history and analytics"
+  ]
 }
