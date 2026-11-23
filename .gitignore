@@ -104,13 +104,17 @@ next-env.d.ts
 /app/apple-icon.png
 /app/brand-icon/route.tsx
 /app/icon.svg
+/app/indexnow-key.txt/route.ts
 /app/landing/page.tsx
+/app/lib/ai-discovery.ts
+/app/lib/i18n/phrases.ts
 /app/lib/i18n/sdk/auth.json
 /app/lib/i18n/sdk/base.json
 /app/lib/i18n/sdk/telemetry.json
 /app/lib/i18n/sdk/telephony.json
 /app/lib/session.ts
 /app/lib/site-metadata.ts
+/app/llms.txt/route.ts
 /app/manager/layout.tsx
 /app/manager/page.tsx
 /app/manager/reports/page.tsx
@@ -126,6 +130,7 @@ next-env.d.ts
 /app/services/control/global_settings.ts
 /app/site-shots/\[file\]/route.ts
 /app/styles/rokct-marquee.css
+/app/styles/rokct-rise.css
 /app/styles/rokct-scroll.css
 /app/twitter-image.tsx
 /components/admin/GenericReport.tsx

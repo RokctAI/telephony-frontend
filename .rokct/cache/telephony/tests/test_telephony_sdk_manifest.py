@@ -108,7 +108,7 @@ class TestManifestShape(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(self.manifest["name"], "telephony_sdk")
-        self.assertEqual(self.manifest["version"], "1.6.0")
+        self.assertEqual(self.manifest["version"], "1.7.0")
 
     def test_top_level_installs_nothing(self):
         # Both halves are app_type-scoped: a host that names neither role
@@ -263,6 +263,7 @@ class TestTelephonyBlock(unittest.TestCase):
                 "components/custom/landing/site-metadata.ts",
                 "components/custom/header-auth-slot.tsx",
                 "components/custom/site-credit.tsx",
+                "app/lib/i18n/phrases.ts",
             ],
         )
 
@@ -533,7 +534,7 @@ class TestRokctTelecomLogo(unittest.TestCase):
 
     def test_changelog_records_1_4_0(self):
         log = read(os.path.join(SDK_DIR, "CHANGELOG.md"))
-        self.assertTrue(log.startswith("# Changelog\n\n## 1.6.0\n"))
+        self.assertTrue(log.startswith("# Changelog\n\n## 1.7.0\n"))
         self.assertIn("\n## 1.4.0\n", log)
         self.assertIn("hardware#69", log.split("## 1.2.1", 1)[0])
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.7.0
+
+* feat(i18n): landing, order and portal text reads in Afrikaans when the visitor
+  picks AF, through base_sdk 1.66.0's `tx()` and the phrase book in
+  `telephony.json` `af.__phrases`. The Afrikaans is machine-drafted and needs a
+  fluent skim. Floor base_sdk >= 1.66.0.
+
 ## 1.6.0
 
 * feat(i18n): 90 hardcoded screen labels, headings, buttons,

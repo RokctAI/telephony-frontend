@@ -73,6 +73,7 @@ import {
   TelephonyReveal,
 } from "./telephony-landing.client";
 
+import { tx } from "@/app/lib/i18n/phrases";
 /** The QR drawn on the last setup step (decorative, not a working code). */
 const SETUP_QR_PATH =
   "M0 0h7v7H0zM1 1v5h5V1zM2 2h3v3H2zM14 0h7v7h-7zM15 1v5h5V1zM16 2h3v3h-3zM0 14h7v7H0zM1 15v5h5v-5zM2 16h3v3H2zM8 0h1v2H8zM10 1h2v1h-2zM9 3h2v2H9zM12 4h1v3h-1zM8 6h2v2H8zM0 8h2v1H0zM3 8h3v1H3zM7 9h3v1H7zM11 8h2v2h-2zM14 8h1v2h-1zM16 9h3v1h-3zM20 8h1v3h-1zM1 10h2v2H1zM5 11h3v1H5zM9 11h1v3H9zM12 11h3v1h-3zM17 11h2v2h-2zM8 13h1v1H8zM11 13h2v2h-2zM14 14h2v1h-2zM18 14h3v1h-3zM8 15h2v2H8zM13 16h1v2h-1zM15 16h3v1h-3zM19 16h1v3h-1zM8 18h3v1H8zM12 19h2v2h-2zM15 18h2v3h-2zM10 20h1v1h-1zM18 20h3v1h-3z";
@@ -101,7 +102,7 @@ function FeatureVisual({ visual }: { visual: TelephonyFeature["visual"] }) {
             <i aria-hidden="true">
               <RiCheckboxBlankCircleFill />
             </i>
-            {line}
+            {tx(line)}
           </span>
         ))}
       </div>
@@ -116,7 +117,7 @@ function FeatureVisual({ visual }: { visual: TelephonyFeature["visual"] }) {
           </i>
         </span>
         <span className="ln">
-          <b>{TELEPHONY_FEATURES.unlimited}</b>
+          <b>{tx(TELEPHONY_FEATURES.unlimited)}</b>
         </span>
         <span className="ph">
           <i aria-hidden="true">
@@ -134,8 +135,8 @@ function FeatureVisual({ visual }: { visual: TelephonyFeature["visual"] }) {
             <i aria-hidden="true">
               <RiPhoneLine />
             </i>
-            <span>{row.label}</span>
-            <span>{row.state}</span>
+            <span>{tx(row.label)}</span>
+            <span>{tx(row.state)}</span>
           </div>
         ))}
       </div>
@@ -169,20 +170,20 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
         <section className="hero" id="hero">
           <div className="wrap hero-grid">
             <div>
-              <span className="eyebrow">{TELEPHONY_HERO.eyebrow}</span>
+              <span className="eyebrow">{tx(TELEPHONY_HERO.eyebrow)}</span>
               <h1>
-                {TELEPHONY_HERO.headline}
+                {tx(TELEPHONY_HERO.headline)}
                 <span className="hl">
-                  {TELEPHONY_HERO.highlight}
+                  {tx(TELEPHONY_HERO.highlight)}
                   <svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true">
                     <path d="M3 14 C 60 4, 140 4, 297 11" stroke="var(--accent)" strokeWidth="5" fill="none" strokeLinecap="round" opacity=".35" />
                   </svg>
                 </span>
               </h1>
-              <p className="lede">{TELEPHONY_HERO.lede}</p>
+              <p className="lede">{tx(TELEPHONY_HERO.lede)}</p>
               <div className="cta-row">
                 <a className="btn btn-primary" href="#pricing">
-                  {TELEPHONY_HERO.primary}{" "}
+                  {tx(TELEPHONY_HERO.primary)}{" "}
                   <i aria-hidden="true">
                     <RiArrowRightLine />
                   </i>
@@ -191,14 +192,14 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                   <i aria-hidden="true">
                     <RiCustomerService2Line />
                   </i>{" "}
-                  {TELEPHONY_HERO.secondary}
+                  {tx(TELEPHONY_HERO.secondary)}
                 </a>
               </div>
               <div className="trust">
                 {TELEPHONY_HERO.trust.map((t) => (
                   <span key={t}>
                     <Check />
-                    {t}
+                    {tx(t)}
                   </span>
                 ))}
               </div>
@@ -214,12 +215,12 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
               <div className="phone">
                 <div className="screen">
                   <div className="notch" />
-                  <div className="lab">{TELEPHONY_HERO.phone.label}</div>
-                  <div className="who">{TELEPHONY_HERO.phone.who}</div>
+                  <div className="lab">{tx(TELEPHONY_HERO.phone.label)}</div>
+                  <div className="who">{tx(TELEPHONY_HERO.phone.who)}</div>
                   <div className="via">
-                    {TELEPHONY_HERO.phone.via[0]}
+                    {tx(TELEPHONY_HERO.phone.via[0])}
                     <br />
-                    {TELEPHONY_HERO.phone.via[1]}
+                    {tx(TELEPHONY_HERO.phone.via[1])}
                   </div>
                   <div className="wave">
                     {WAVE_DELAYS.map((d, i) => (
@@ -254,8 +255,8 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                   <i aria-hidden="true">
                     <Icon />
                   </i>
-                  <h3>{o.title}</h3>
-                  <p>{o.text}</p>
+                  <h3>{tx(o.title)}</h3>
+                  <p>{tx(o.text)}</p>
                 </div>
               );
             })}
@@ -266,10 +267,10 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
           <div className="wrap">
             <div className="flow-head">
               <div>
-                <span className="eyebrow">{TELEPHONY_FLOW.eyebrow}</span>
-                <h2 style={{ marginTop: 16 }}>{TELEPHONY_FLOW.heading}</h2>
+                <span className="eyebrow">{tx(TELEPHONY_FLOW.eyebrow)}</span>
+                <h2 style={{ marginTop: 16 }}>{tx(TELEPHONY_FLOW.heading)}</h2>
               </div>
-              <p>{TELEPHONY_FLOW.blurb}</p>
+              <p>{tx(TELEPHONY_FLOW.blurb)}</p>
             </div>
             <TelephonyCallFlow />
             <div className="flow-foot">
@@ -277,7 +278,7 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                 <i aria-hidden="true">
                   <RiInformationLine />
                 </i>
-                {TELEPHONY_FLOW.note}
+                {tx(TELEPHONY_FLOW.note)}
               </span>
             </div>
           </div>
@@ -287,10 +288,10 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
           <div className="wrap">
             <div className="sec-head">
               <div>
-                <span className="eyebrow">{TELEPHONY_SETUP.eyebrow}</span>
-                <h2>{TELEPHONY_SETUP.heading}</h2>
+                <span className="eyebrow">{tx(TELEPHONY_SETUP.eyebrow)}</span>
+                <h2>{tx(TELEPHONY_SETUP.heading)}</h2>
               </div>
-              <p className="lede">{TELEPHONY_SETUP.lede}</p>
+              <p className="lede">{tx(TELEPHONY_SETUP.lede)}</p>
             </div>
             <div className="steps">
               {TELEPHONY_SETUP.steps.map((s, i) => (
@@ -303,8 +304,8 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                     </svg>
                   )}
                   <div className="num">{i + 1}</div>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
+                  <h3>{tx(s.title)}</h3>
+                  <p>{tx(s.text)}</p>
                 </div>
               ))}
             </div>
@@ -315,8 +316,8 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
           <div className="wrap">
             <div className="sec-head">
               <div>
-                <span className="eyebrow">{TELEPHONY_FEATURES.eyebrow}</span>
-                <h2>{TELEPHONY_FEATURES.heading}</h2>
+                <span className="eyebrow">{tx(TELEPHONY_FEATURES.eyebrow)}</span>
+                <h2>{tx(TELEPHONY_FEATURES.heading)}</h2>
               </div>
             </div>
             <div className="bento">
@@ -331,15 +332,15 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                       </i>
                     </div>
                     <h3>
-                      {c.title}
+                      {tx(c.title)}
                       {c.pro && (
                         <>
                           {" "}
-                          <span className="pro">{TELEPHONY_FEATURES.proBadge}</span>
+                          <span className="pro">{tx(TELEPHONY_FEATURES.proBadge)}</span>
                         </>
                       )}
                     </h3>
-                    <p>{c.text}</p>
+                    <p>{tx(c.text)}</p>
                     <FeatureVisual visual={c.visual} />
                   </div>
                 );
@@ -351,13 +352,13 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
         <section className="section flush">
           <div className="wrap portal">
             <div>
-              <span className="eyebrow">{TELEPHONY_PORTAL.eyebrow}</span>
-              <h2 style={{ marginTop: 16 }}>{TELEPHONY_PORTAL.heading}</h2>
+              <span className="eyebrow">{tx(TELEPHONY_PORTAL.eyebrow)}</span>
+              <h2 style={{ marginTop: 16 }}>{tx(TELEPHONY_PORTAL.heading)}</h2>
               <div className="ticks">
                 {TELEPHONY_PORTAL.ticks.map((t) => (
                   <div key={t}>
                     <Check />
-                    {t}
+                    {tx(t)}
                   </div>
                 ))}
               </div>
@@ -368,25 +369,25 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                   <b />
                   <b />
                   <b />
-                  <span>{TELEPHONY_PORTAL.bar}</span>
+                  <span>{tx(TELEPHONY_PORTAL.bar)}</span>
                 </div>
                 <div className="sk-body">
                   <div className="sk-card">
-                    <div className="t">{TELEPHONY_PORTAL.balance}</div>
-                    <span className="sk-btn">{TELEPHONY_PORTAL.topUp}</span>
+                    <div className="t">{tx(TELEPHONY_PORTAL.balance)}</div>
+                    <span className="sk-btn">{tx(TELEPHONY_PORTAL.topUp)}</span>
                   </div>
                   <div className="sk-card">
-                    <div className="t">{TELEPHONY_PORTAL.subscription}</div>
-                    <div className="v">{TELEPHONY_PORTAL.plan}</div>
+                    <div className="t">{tx(TELEPHONY_PORTAL.subscription)}</div>
+                    <div className="v">{tx(TELEPHONY_PORTAL.plan)}</div>
                   </div>
                   <div className="sk-card sk-wide">
                     <div className="t" style={{ marginBottom: 6 }}>
-                      {TELEPHONY_PORTAL.lineDetails}
+                      {tx(TELEPHONY_PORTAL.lineDetails)}
                     </div>
                     {TELEPHONY_PORTAL.rows.map((r) => (
                       <div key={r.label} className="sk-row">
-                        <span>{r.label}</span>
-                        <span className={r.live ? "live" : undefined}>{r.value}</span>
+                        <span>{tx(r.label)}</span>
+                        <span className={r.live ? "live" : undefined}>{tx(r.value)}</span>
                       </div>
                     ))}
                   </div>
@@ -398,8 +399,8 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                       </g>
                     </svg>
                     <div>
-                      <div className="t">{TELEPHONY_PORTAL.zoiper}</div>
-                      <p>{TELEPHONY_PORTAL.zoiperText}</p>
+                      <div className="t">{tx(TELEPHONY_PORTAL.zoiper)}</div>
+                      <p>{tx(TELEPHONY_PORTAL.zoiperText)}</p>
                     </div>
                   </div>
                 </div>
@@ -408,7 +409,7 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                 <i aria-hidden="true">
                   <RiInformationLine />
                 </i>
-                {TELEPHONY_PORTAL.note}
+                {tx(TELEPHONY_PORTAL.note)}
               </div>
             </div>
           </div>
@@ -418,8 +419,8 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
           <div className="wrap">
             <div className="sec-head">
               <div>
-                <span className="eyebrow">{TELEPHONY_MENUS.eyebrow}</span>
-                <h2>{TELEPHONY_MENUS.heading}</h2>
+                <span className="eyebrow">{tx(TELEPHONY_MENUS.eyebrow)}</span>
+                <h2>{tx(TELEPHONY_MENUS.heading)}</h2>
               </div>
             </div>
             <div className="who-grid">
@@ -430,13 +431,13 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                     <i aria-hidden="true">
                       <Icon />
                     </i>
-                    <h3>{w.title}</h3>
-                    <p>{w.text}</p>
+                    <h3>{tx(w.title)}</h3>
+                    <p>{tx(w.text)}</p>
                     <div className="menu">
                       {w.menu.map((m, i) => (
                         <span key={m}>
                           <kbd>{i + 1}</kbd>
-                          {m}
+                          {tx(m)}
                         </span>
                       ))}
                     </div>
@@ -451,14 +452,14 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
           <div className="wrap">
             <div className="sec-head">
               <div>
-                <span className="eyebrow">{TELEPHONY_PRICING.eyebrow}</span>
-                <h2>{TELEPHONY_PRICING.heading}</h2>
+                <span className="eyebrow">{tx(TELEPHONY_PRICING.eyebrow)}</span>
+                <h2>{tx(TELEPHONY_PRICING.heading)}</h2>
               </div>
               <p className="net-note">
                 <i aria-hidden="true">
                   <RiArrowLeftRightLine />
                 </i>
-                {TELEPHONY_PRICING.network}
+                {tx(TELEPHONY_PRICING.network)}
               </p>
             </div>
             <div className="plans">
@@ -475,38 +476,38 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                             </i>{" "}
                           </>
                         )}
-                        {plan.name}
+                        {tx(plan.name)}
                       </h3>
-                      {plan.badge && <span className="pro">{plan.badge}</span>}
+                      {plan.badge && <span className="pro">{tx(plan.badge)}</span>}
                     </div>
                     <div className="price">
-                      <b>{plan.price}</b>
-                      <span>{plan.per}</span>
+                      <b>{tx(plan.price)}</b>
+                      <span>{tx(plan.per)}</span>
                     </div>
-                    <p className="sub">{plan.sub}</p>
+                    <p className="sub">{tx(plan.sub)}</p>
                     {plan.id === "pro" && <TelephonyProCalculator />}
                     <ul>
                       {plan.features.map((f) => (
                         <li key={f}>
                           <Check />
-                          {f}
+                          {tx(f)}
                         </li>
                       ))}
                     </ul>
                     {plan.locked ? (
                       <button type="button" className="btn btn-ghost" disabled>
-                        {plan.cta}
+                        {tx(plan.cta)}
                       </button>
                     ) : plan.id === "pro" ? (
                       <a className="btn btn-primary" href={signupUrl}>
-                        {plan.cta}{" "}
+                        {tx(plan.cta)}{" "}
                         <i aria-hidden="true">
                           <RiArrowRightLine />
                         </i>
                       </a>
                     ) : (
                       <a className="btn btn-ghost" href={signupUrl}>
-                        {plan.cta}
+                        {tx(plan.cta)}
                       </a>
                     )}
                   </div>
@@ -518,12 +519,12 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                 <RiCustomerService2Line />
               </i>
               <p>
-                <b>{TELEPHONY_PRICING.talk.lead}</b>
-                {TELEPHONY_PRICING.talk.text}
+                <b>{tx(TELEPHONY_PRICING.talk.lead)}</b>
+                {tx(TELEPHONY_PRICING.talk.text)}
               </p>
               {TELEPHONY_PRICING.talk.href && (
                 <a className="btn btn-ghost" href={TELEPHONY_PRICING.talk.href}>
-                  {TELEPHONY_PRICING.talk.cta}
+                  {tx(TELEPHONY_PRICING.talk.cta)}
                 </a>
               )}
             </div>
@@ -533,19 +534,19 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
         <section className="section" id="faq">
           <div className="wrap faq">
             <div>
-              <span className="eyebrow">{TELEPHONY_FAQ.eyebrow}</span>
-              <h2>{TELEPHONY_FAQ.heading}</h2>
+              <span className="eyebrow">{tx(TELEPHONY_FAQ.eyebrow)}</span>
+              <h2>{tx(TELEPHONY_FAQ.heading)}</h2>
             </div>
             <div>
               {TELEPHONY_FAQ.items.map((item, i) => (
                 <details key={item.q} open={i === 0}>
                   <summary>
-                    {item.q}
+                    {tx(item.q)}
                     <i aria-hidden="true">
                       <RiAddLine />
                     </i>
                   </summary>
-                  <p>{item.a}</p>
+                  <p>{tx(item.a)}</p>
                 </details>
               ))}
             </div>
@@ -564,18 +565,18 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
                 </g>
               </svg>
               <div>
-                <h2>{TELEPHONY_FINAL.heading}</h2>
-                <p>{TELEPHONY_FINAL.text}</p>
+                <h2>{tx(TELEPHONY_FINAL.heading)}</h2>
+                <p>{tx(TELEPHONY_FINAL.text)}</p>
               </div>
               <div className="cta-row">
                 <a className="btn btn-dark" href="#pricing">
-                  {TELEPHONY_FINAL.primary}{" "}
+                  {tx(TELEPHONY_FINAL.primary)}{" "}
                   <i aria-hidden="true">
                     <RiArrowRightLine />
                   </i>
                 </a>
                 <a className="btn btn-line" href="#talk">
-                  {TELEPHONY_FINAL.secondary}
+                  {tx(TELEPHONY_FINAL.secondary)}
                 </a>
               </div>
             </div>
@@ -590,11 +591,11 @@ export function TelephonyLanding({ fontClassName = "" }: TelephonyLandingProps) 
           <nav>
             {TELEPHONY_FOOTER_NAV.map((item) => (
               <a key={item.href} href={item.href}>
-                {item.label}
+                {tx(item.label)}
               </a>
             ))}
             {/* 1.3.0: only where an SDK fills the header auth slot (a shell with sign-in). */}
-            {hasHeaderAuth() && <a href={loginUrl}>{TELEPHONY_HEADER.login}</a>}
+            {hasHeaderAuth() && <a href={loginUrl}>{tx(TELEPHONY_HEADER.login)}</a>}
           </nav>
         </div>
       </footer>

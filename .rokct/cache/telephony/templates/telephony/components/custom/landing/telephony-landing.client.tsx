@@ -42,6 +42,7 @@ import {
 } from "./telephony-landing-config";
 import { TelephonyLogo } from "./telephony-logo";
 
+import { tx } from "@/app/lib/i18n/phrases";
 // 1.3.0: Log in and Sign up are drawn by whatever SDK fills base's header
 // auth slot (base_sdk >= 1.60.0; auth_sdk registers it), in this header's
 // own classes: quiet `.login` links on the bar (hidden below the phone
@@ -86,7 +87,7 @@ export function TelephonyHeader({
         <nav className="nav-links" aria-label={TELEPHONY_HEADER.navLabel}>
           {TELEPHONY_NAV.map((item) => (
             <a key={item.href} href={`${base}${item.href}`}>
-              {item.label}
+              {tx(item.label)}
             </a>
           ))}
         </nav>
@@ -98,7 +99,7 @@ export function TelephonyHeader({
           </button>
           <HeaderAuthSlot variant="bar" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_BAR} />
           <a className="btn btn-primary hide-sm" href={`${base}#pricing`}>
-            {TELEPHONY_HEADER.start}
+            {tx(TELEPHONY_HEADER.start)}
           </a>
           <button
             type="button"
@@ -117,7 +118,7 @@ export function TelephonyHeader({
       <div className={open ? "mobile-menu open" : "mobile-menu"} id="tel-mobile-menu" onClick={() => setOpen(false)}>
         {TELEPHONY_NAV.map((item) => (
           <a key={item.href} href={`${base}${item.href}`}>
-            {item.label}
+            {tx(item.label)}
           </a>
         ))}
         <HeaderAuthSlot variant="panel" loginUrl={loginUrl} signupUrl={signupUrl} classes={TELEPHONY_AUTH_MENU} />
@@ -199,7 +200,7 @@ export function TelephonyCallFlow() {
               <i aria-hidden="true">
                 <Icon />
               </i>
-              {b.tab}
+              {tx(b.tab)}
             </button>
           );
         })}
@@ -207,32 +208,32 @@ export function TelephonyCallFlow() {
       <div className="board">
         <div className="node">
           <div className="step">
-            <span>{steps.incoming.step}</span>
+            <span>{tx(steps.incoming.step)}</span>
           </div>
-          <h4>{steps.incoming.title}</h4>
-          <p>{steps.incoming.text}</p>
+          <h4>{tx(steps.incoming.title)}</h4>
+          <p>{tx(steps.incoming.text)}</p>
           <div className="caller-big">
             <i aria-hidden="true">
               <RiPhoneLine />
             </i>
             <span>
-              {steps.incoming.calling}
-              <b>{steps.incoming.number}</b>
+              {tx(steps.incoming.calling)}
+              <b>{tx(steps.incoming.number)}</b>
             </span>
           </div>
         </div>
         <div className="wire" aria-hidden="true" />
         <div className="node">
           <div className="step">
-            <span>{steps.menu.step}</span>
-            <span className="pro">{steps.menu.badge}</span>
+            <span>{tx(steps.menu.step)}</span>
+            <span className="pro">{tx(steps.menu.badge)}</span>
           </div>
-          <div className="greeting">{business.greeting}</div>
+          <div className="greeting">{tx(business.greeting)}</div>
           <div className="keys">
             {business.options.map((o, i) => (
               <button key={o.label} type="button" className={i === sel ? "key on" : "key"} onClick={() => chooseKey(i)}>
                 <kbd>{i + 1}</kbd>
-                {o.label}
+                {tx(o.label)}
               </button>
             ))}
           </div>
@@ -240,9 +241,9 @@ export function TelephonyCallFlow() {
         <div className="wire" aria-hidden="true" />
         <div className="node">
           <div className="step">
-            <span>{steps.rings.step}</span>
+            <span>{tx(steps.rings.step)}</span>
           </div>
-          <p style={{ marginTop: 12 }}>{steps.rings.text}</p>
+          <p style={{ marginTop: 12 }}>{tx(steps.rings.text)}</p>
           <div className="staff" style={{ marginTop: 16 }}>
             {business.options.map((o, i) => {
               const Icon = o.icon;
@@ -251,8 +252,8 @@ export function TelephonyCallFlow() {
                   <i aria-hidden="true">
                     <Icon />
                   </i>
-                  {o.person}
-                  <span className="tag">{steps.rings.ringing}</span>
+                  {tx(o.person)}
+                  <span className="tag">{tx(steps.rings.ringing)}</span>
                 </div>
               );
             })}
@@ -261,14 +262,14 @@ export function TelephonyCallFlow() {
         <div className="wire" aria-hidden="true" />
         <div className="node">
           <div className="step">
-            <span>{steps.record.step}</span>
+            <span>{tx(steps.record.step)}</span>
           </div>
-          <h4>{steps.record.title}</h4>
-          <p>{steps.record.text}</p>
+          <h4>{tx(steps.record.title)}</h4>
+          <p>{tx(steps.record.text)}</p>
           <div className="logrow" aria-live="polite">
             {log.map((row, i) => (
               <div key={row.id} className={i === 0 ? "new" : undefined}>
-                <span>{row.person}</span>
+                <span>{tx(row.person)}</span>
                 <span>{steps.record.pressed(row.key)}</span>
               </div>
             ))}
@@ -284,7 +285,7 @@ export function TelephonyProCalculator() {
   return (
     <>
       <div className="stepper">
-        <label htmlFor="tel-pro-lines">{TELEPHONY_PRICING.stepperLabel}</label>
+        <label htmlFor="tel-pro-lines">{tx(TELEPHONY_PRICING.stepperLabel)}</label>
         <div className="ctl">
           <button
             type="button"
@@ -295,7 +296,7 @@ export function TelephonyProCalculator() {
               <RiSubtractLine />
             </i>
           </button>
-          <output id="tel-pro-lines">{lines}</output>
+          <output id="tel-pro-lines">{tx(lines)}</output>
           <button
             type="button"
             aria-label={TELEPHONY_PRICING.more}
@@ -308,7 +309,7 @@ export function TelephonyProCalculator() {
         </div>
       </div>
       <div className="total">
-        {TELEPHONY_PRICING.totalLabel} <b>{proTotalLine(lines)}</b>
+        {tx(TELEPHONY_PRICING.totalLabel)} <b>{proTotalLine(lines)}</b>
       </div>
     </>
   );

@@ -10,5 +10,10 @@
     "desktop": "latest/desktop-dark.webp",
     "phone": "latest/phone-dark.webp"
   },
-  "logo_back": null
+  "logo_back": null,
+  "features": [
+    "Five-step sign-up with number choice",
+    "Phone setup by scanning a QR code",
+    "Online top-up and line management with Paystack"
+  ]
 }

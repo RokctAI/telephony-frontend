@@ -44,6 +44,7 @@ import { TelephonyHeader } from "@/components/custom/landing/telephony-landing.c
 import { TelephonyLogo, TelephonyMark } from "@/components/custom/landing/telephony-logo";
 import { TELECOM_AUTH_COPY, telecomAuthPanel } from "@/components/custom/telecom-auth/telecom-auth-copy";
 
+import { tx } from "@/app/lib/i18n/phrases";
 export interface SiteShellProps {
   children: ReactNode;
   /** Header "Log in" handler from the auth page; the Rokct Telecom header ignores it. */
@@ -68,16 +69,16 @@ export function SiteShell({ children }: SiteShellProps) {
       <main className="ta">
         <div className="wrap ta-g">
           <aside className="ta-side" aria-label={TELECOM_AUTH_COPY.sideLabel}>
-            <span className="eyebrow">{panel.kicker}</span>
+            <span className="eyebrow">{tx(panel.kicker)}</span>
             <h2 className="ta-h">
               {panel.title.map((line) => (
-                <span key={line}>{line}</span>
+                <span key={line}>{tx(line)}</span>
               ))}
             </h2>
-            <p className="lede ta-lede">{panel.lede}</p>
+            <p className="lede ta-lede">{tx(panel.lede)}</p>
             <ul className="ta-pts">
               {TELECOM_AUTH_COPY.points.map((p) => (
-                <li key={p}>{p}</li>
+                <li key={p}>{tx(p)}</li>
               ))}
             </ul>
           </aside>
@@ -91,7 +92,7 @@ export function SiteShell({ children }: SiteShellProps) {
           <nav>
             {TELEPHONY_FOOTER_NAV.map((item) => (
               <a key={item.href} href={`/${item.href}`}>
-                {item.label}
+                {tx(item.label)}
               </a>
             ))}
           </nav>

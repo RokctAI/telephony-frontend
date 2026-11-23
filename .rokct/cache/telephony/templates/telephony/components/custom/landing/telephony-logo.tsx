@@ -31,6 +31,7 @@ import Link from "next/link";
 
 import { TELEPHONY_SITE_NAME, telephonyWordmark } from "./telephony-brand";
 
+import { tx } from "@/app/lib/i18n/phrases";
 /** The mark alone: the teal tile and the white "rt". Decorative; the link carries the name. */
 export function TelephonyMark({ className = "mark" }: { className?: string }) {
   return (
@@ -66,11 +67,11 @@ export function TelephonyLogo({
     <Link href="/" className={className} aria-label={`${siteName} home`}>
       <TelephonyMark />
       <span className="wordmark">
-        {head}
+        {tx(head)}
         {tail && (
           <>
             {" "}
-            <b>{tail}</b>
+            <b>{tx(tail)}</b>
           </>
         )}
       </span>
