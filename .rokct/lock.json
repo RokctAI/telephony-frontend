@@ -4,7 +4,7 @@
   "app_type": "telephony",
   "protocol": {
     "git": "https://github.com/RokctAI/The-Rokct-Protocol",
-    "ref": "496c521681deb68254d4c4dc888aabe4bb0e0e3b",
+    "ref": "f76a000012944100c5f7c5f833bbfc3a55c88b6d",
     "vendored": ".rokct/cache/_composer",
     "files": {
       "sdk_composer.py": "b437f486a72eed54418ee56bc464e3c016d83a0175d35f28adfd2a9fc37ca943",
@@ -19,7 +19,7 @@
       "git": "https://github.com/RokctAI/core",
       "path": "../core/telemetry/nextjs",
       "ref": "main",
-      "commit": "24c5b97cf2b22871063396cb93fc123e6957b8eb",
+      "commit": "d9d03b26eaccd6f6978dc677391b05605ab15513",
       "version": "1.3.0",
       "install_py_sha256": "318d20eb7123ffaa549618d06b4530dfce5df9ba0b07df2328c0c6e1738e36c4",
       "content_sha256": "a991e6740bd03c5a0a7845631520308bceba62e4bf064806a37812c131cd94cc"
@@ -31,10 +31,10 @@
       "git": "https://github.com/RokctAI/core",
       "path": "../core/base/nextjs",
       "ref": "main",
-      "commit": "24c5b97cf2b22871063396cb93fc123e6957b8eb",
-      "version": "1.64.1",
+      "commit": "d9d03b26eaccd6f6978dc677391b05605ab15513",
+      "version": "1.68.0",
       "install_py_sha256": "b6c434a1c05611d29f1018f68b9423383f7ecfbf9cc1efe74825ba6c4df98fff",
-      "content_sha256": "1ce791f5a5c13e9981d93cd397f5e68947440843ad5e5eb1c3fbdeb283c57238"
+      "content_sha256": "012ed4635a105dea631687944b294d9e35b8316776761b3278c37fd8555e1e3c"
     },
     {
       "name": "auth_sdk",
@@ -43,7 +43,7 @@
       "git": "https://github.com/RokctAI/Users",
       "path": "../Users/auth/nextjs",
       "ref": "main",
-      "commit": "fe9eabf397e603fc39d376ec7de8b31c3f3a31f3",
+      "commit": "3c17bc3ad6497de8a906e2f4d64218aeedbb23e0",
       "version": "1.13.0",
       "install_py_sha256": "b9b0d4156a68d46f528be2b885eed17cc7dba21f6b4b48b2991ba2c3274ae21b",
       "content_sha256": "692a400e4640a15ed52269e751a76924f1a127e108d109a3d6f53c98979861b3"
@@ -55,10 +55,10 @@
       "git": "https://github.com/RokctAI/hardware",
       "path": "../hardware/telephony/nextjs",
       "ref": "main",
-      "commit": "ea1c9258c94959fc4e024fa6cc3f2a9e0ea2297e",
-      "version": "1.6.0",
+      "commit": "4e4fbde93e5b92cc304978d999862a9132ac5cbe",
+      "version": "1.7.0",
       "install_py_sha256": "5e4182ace62450b9feb6689aae032b8d4434e4ef368d071ab344ade58c1bf691",
-      "content_sha256": "45b150aeeb17f2266c213f6dac69f40d1c1833e76e9b11fe789e81f9d96aebfd"
+      "content_sha256": "d2c7347a61ebb69ca14632c1f1e75b584ae0a7644aece1c7f428d0127a74421a"
     }
   ]
 }

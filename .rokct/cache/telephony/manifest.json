@@ -1,6 +1,6 @@
 {
     "name": "telephony_sdk",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "installs": [],
     "dependencies": {},
     "devDependencies": {},
@@ -209,7 +209,8 @@
                 "components/custom/landing/site-credit.ts",
                 "components/custom/landing/site-metadata.ts",
                 "components/custom/header-auth-slot.tsx",
-                "components/custom/site-credit.tsx"
+                "components/custom/site-credit.tsx",
+                "app/lib/i18n/phrases.ts"
             ]
         },
         "tenant": {}
